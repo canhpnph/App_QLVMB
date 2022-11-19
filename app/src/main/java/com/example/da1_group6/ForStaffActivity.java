@@ -50,7 +50,7 @@ public class ForStaffActivity extends AppCompatActivity {
         });
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_qlyvemb_staff, R.id.nav_xnvemb_staff, R.id.nav_doanhthu_staff, R.id.nav_user_staff, R.id.nav_doimk_staff)
+                R.id.nav_qlyvemb_staff, R.id.nav_xnvemb_staff, R.id.nav_doanhthu_staff, R.id.nav_info_staff, R.id.nav_doimk_staff)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_for_staff);

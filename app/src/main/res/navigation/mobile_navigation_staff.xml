@@ -24,7 +24,7 @@
         tools:layout="@layout/fragment_doanhthu_staff" />
 
     <fragment
-        android:id="@+id/nav_user_staff"
+        android:id="@+id/nav_info_staff"
         android:name="com.example.da1_group6.ui_staff.Fragment_Info_staff"
         android:label="Thông tin cá nhân"
         tools:layout="@layout/fragment_info_staff" />

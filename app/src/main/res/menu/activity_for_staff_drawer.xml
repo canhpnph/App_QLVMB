@@ -33,7 +33,7 @@
             android:title="Người dùng">
             <menu>
                 <item
-                    android:id="@+id/nav_user_staff"
+                    android:id="@+id/nav_info_staff"
                     android:icon="@drawable/img_info_user_menu"
                     android:title="Thông tin cá nhân"/>
                 <item
