@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/nav_hangmb_admin"
-        android:name="com.example.da1_group6.ui_staff.Fragment_QLVMB_staff"
+        android:name="com.example.da1_group6.ui_admin.Fragment_HangMB_admin"
         android:label="Hãng máy bay"
-        tools:layout="@layout/fragment_qlvmb_staff" />
+        tools:layout="@layout/fragment_hangmb_admin" />
     <fragment
         android:id="@+id/nav_qlynv_admin"
         android:name="com.example.da1_group6.ui_admin.Fragment_QLNV_admin"

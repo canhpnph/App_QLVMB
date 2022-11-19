@@ -7,33 +7,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:gravity="center"
-        android:orientation="horizontal">
-        <Spinner
-            android:layout_width="110dp"
-            android:layout_height="30dp"
-            android:id="@+id/spin1"
-            />
-
-        <Spinner
-            android:layout_marginStart="20dp"
-            android:layout_width="110dp"
-            android:layout_height="30dp"
-            android:id="@+id/spin2"
-            />
-
-        <Spinner
-            android:layout_marginStart="20dp"
-            android:layout_width="110dp"
-            android:layout_height="30dp"
-            android:id="@+id/spin3"
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <ImageView
@@ -147,9 +120,9 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:paddingStart="5dp"
             android:layout_width="100dp"
             android:layout_height="90dp"
+            android:paddingStart="5dp"
             android:src="@drawable/logo_vnairlines" />
 
         <LinearLayout
@@ -258,9 +231,9 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:paddingStart="5dp"
             android:layout_width="100dp"
             android:layout_height="90dp"
+            android:paddingStart="5dp"
             android:src="@drawable/logo_bamboo" />
 
         <LinearLayout

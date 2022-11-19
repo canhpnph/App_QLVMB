@@ -1,14 +1,237 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui_staff.Fragment_Info_staff">
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:id="@+id/avatar_staff"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/person" />
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/btn_camera_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="49dp"
+        android:layout_marginTop="-40dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/i1"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/bgr_gray" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_camera_alt_24"
+            app:layout_anchor="@id/i1"
+            app:layout_anchorGravity="center" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:textColor="@color/black"
+        android:text="Nguyễn Văn A"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:layout_marginTop="15dp"/>
 
-</FrameLayout>
+    <ImageView
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/anh4" />
+
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/custom_edittext"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:drawableStart="@drawable/ic_baseline_person_24"
+            android:drawablePadding="7dp"
+            android:gravity="center|left"
+            android:padding="10dp"
+            android:text="Mã nhân viên"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/tv_mnv_staff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="15dp"
+            android:textColor="@color/black"
+            android:text="NV01"
+            android:gravity="right"
+            android:paddingRight="25dp"
+            />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/custom_edittext"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:drawableStart="@drawable/ic_baseline_email_24"
+            android:drawablePadding="7dp"
+            android:gravity="center|left"
+            android:padding="10dp"
+            android:text="Email"
+            android:textSize="13dp" />
+
+        <EditText
+            android:id="@+id/edt_email_staff"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="5dp"
+            android:hint="canhpnph@fpt.edu.vn"
+            android:textSize="14dp"
+            android:paddingStart="10dp"
+            android:gravity="right|center"
+            android:paddingRight="20dp"
+            android:background="@drawable/custom_edittext" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/custom_edittext"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:drawableStart="@drawable/ic_phone"
+            android:drawablePadding="7dp"
+            android:gravity="center|left"
+            android:padding="10dp"
+            android:text="Số điện thoại"
+            android:textSize="13dp" />
+
+        <EditText
+            android:id="@+id/edt_sdt_staff"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="5dp"
+            android:textSize="14dp"
+            android:paddingStart="10dp"
+            android:hint="0986643743"
+            android:gravity="right|center"
+            android:paddingRight="20dp"
+            android:background="@drawable/custom_edittext" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/custom_edittext"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:drawableStart="@drawable/ic_sex"
+            android:drawablePadding="7dp"
+            android:gravity="center|left"
+            android:padding="10dp"
+            android:text="Giới tính"
+            android:textSize="13dp" />
+
+        <Spinner
+            android:id="@+id/spin_sex_staff"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/custom_spinner1"
+            android:gravity="right" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/custom_edittext"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:drawableStart="@drawable/ic_baseline_map_24"
+            android:drawablePadding="7dp"
+            android:gravity="center|left"
+            android:padding="10dp"
+            android:text="Quốc tịch"
+            android:textSize="13dp" />
+
+        <Spinner
+            android:id="@+id/spin_quoctich_staff"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/custom_spinner1" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnSave_Info_in_Staff"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button"
+        android:text="Lưu"
+        android:textColor="#FFFFFF" />
+</LinearLayout>

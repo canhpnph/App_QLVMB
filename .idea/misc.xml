@@ -4,13 +4,30 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/drawable/button.xml" value="0.1565" />
+        <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/drawable/custom_butoon.xml" value="0.1565" />
+        <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/drawable/custom_button.xml" value="0.142" />
+        <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/drawable/custom_dangki.xml" value="0.142" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/drawable/custom_dangnhap.xml" value="0.1645" />
+        <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/drawable/custom_edittext.xml" value="0.142" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/drawable/custom_icon_dangnhap.xml" value="0.1645" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/drawable/custom_icon_pass.xml" value="0.1645" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/drawable/custom_icon_retype_passw.xml" value="0.148" />
+        <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/drawable/custom_spinner.xml" value="0.142" />
+        <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/drawable/custom_spinner1.xml" value="0.1" />
+        <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/drawable/customspinner.xml" value="0.1565" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/drawable/ic_baseline_android_24.xml" value="0.148" />
+        <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/drawable/ic_baseline_arrow_drop_down_24.xml" value="0.1565" />
+        <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/drawable/ic_baseline_camera_alt_24.xml" value="0.142" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/drawable/ic_baseline_email.xml" value="0.148" />
+        <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/drawable/ic_baseline_email1.xml" value="0.142" />
+        <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/drawable/ic_baseline_email2.xml" value="0.142" />
+        <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/drawable/ic_baseline_email_24.xml" value="0.142" />
+        <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/drawable/ic_baseline_local_phone_24.xml" value="0.142" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.1645" />
+        <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/drawable/ic_baseline_map_24.xml" value="0.142" />
+        <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.142" />
+        <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/drawable/ic_down.xml" value="0.142" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1645" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/drawable/ic_passcured.xml" value="0.1645" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/drawable/ic_passmoi.xml" value="0.1645" />
@@ -24,7 +41,7 @@
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/activity_for_admin.xml" value="0.24635416666666668" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/activity_for_staff.xml" value="0.24635416666666668" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/activity_for_user.xml" value="0.25" />
-        <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/activity_login.xml" value="0.264" />
+        <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/activity_login.xml" value="0.2" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/activity_register.xml" value="0.25" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/app_bar_for_admin.xml" value="0.24635416666666668" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/app_bar_for_staff.xml" value="0.24635416666666668" />
@@ -32,21 +49,24 @@
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/content_for_admin.xml" value="0.24635416666666668" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/content_for_staff.xml" value="0.24635416666666668" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/content_for_user.xml" value="0.25" />
-        <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/fragment__info_user.xml" value="0.25" />
+        <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/fragment__info_user.xml" value="0.2" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/fragment_book_ve_user.xml" value="0.2359375" />
-        <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/fragment_doanhthu_admin.xml" value="0.25" />
+        <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/fragment_doanhthu_admin.xml" value="0.2" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/fragment_doanhthu_staff.xml" value="0.25" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/fragment_doi_mk.xml" value="0.25" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/fragment_hangmb.xml" value="0.2359375" />
-        <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/fragment_hangmb_admin.xml" value="0.25" />
+        <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/fragment_hangmb_admin.xml" value="0.2" />
+        <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/fragment_info_staff.xml" value="0.25" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/fragment_qlnv.xml" value="0.2359375" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/fragment_qlnv_admin.xml" value="0.2" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/fragment_qlvmb_admin.xml" value="0.25" />
+        <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/fragment_qlvmb_staff.xml" value="0.25" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/fragment_qlvmb_user.xml" value="0.25" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/fragment_test.xml" value="0.2" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/fragment_test1.xml" value="0.25" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/fragment_thoat.xml" value="0.24635416666666668" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/fragment_topmb.xml" value="0.25" />
+        <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/fragment_topmb_admin.xml" value="0.264" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/fragment_wallet_user.xml" value="0.2" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/fragment_xnvmb.xml" value="0.1" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/fragment_xnvmb_staff.xml" value="0.25" />

@@ -23,8 +23,10 @@ public class Activity_Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         btnLogin = findViewById(R.id.btnLogin);
         edt_email = findViewById(R.id.edt_email);
-        edt_pass = findViewById(R.id.edt_matkhau);
+        edt_pass = findViewById(R.id.edt_pass);
         showPass = findViewById(R.id.showPass);
+
+        overridePendingTransition(R.anim.animation1, R.anim.animation2);
 
         edt_pass.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
@@ -56,6 +58,7 @@ public class Activity_Login extends AppCompatActivity {
 
     public void from_login_to_register(View view) {
         startActivity(new Intent(Activity_Login.this, Activity_Register.class));
+        overridePendingTransition(R.anim.animation1, R.anim.animation2);
     }
 
 }
