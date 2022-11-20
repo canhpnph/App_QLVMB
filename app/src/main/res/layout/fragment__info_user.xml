@@ -78,16 +78,18 @@
                 android:text="Ngày sinh"
                 android:textSize="13dp" />
 
-            <TextView
-                android:id="@+id/tv_date_user"
+            <EditText
+                android:id="@+id/edt_date_user"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_gravity="center"
-                android:textSize="15dp"
-                android:textColor="@color/black"
-                android:text="12/12/2000"
-                android:gravity="right"
-                android:paddingRight="25dp" />
+                android:layout_marginRight="5dp"
+                android:hint="12/12/2000"
+                android:textSize="14dp"
+                android:paddingStart="10dp"
+                android:gravity="right|center"
+                android:paddingRight="20dp"
+                android:background="@drawable/custom_edittext" />
 
 
         </LinearLayout>
@@ -224,10 +226,11 @@
                 android:textSize="13dp" />
 
             <Spinner
+                android:paddingLeft="45dp"
                 android:id="@+id/spin_sex_user"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_gravity="center"
+                android:layout_gravity="center|right"
                 android:layout_marginRight="5dp"
                 android:background="@drawable/custom_spinner1"
                 android:gravity="right" />
@@ -256,13 +259,18 @@
                 android:text="Địa chỉ"
                 android:textSize="13dp" />
 
-            <Spinner
-                android:id="@+id/spin_diachi_user"
+            <EditText
+                android:id="@+id/edt_diachi_user"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:layout_marginRight="5dp"
-                android:background="@drawable/custom_spinner1" />
+                android:textSize="14dp"
+                android:paddingStart="10dp"
+                android:hint="Nam Từ Liêm, Hà Nội"
+                android:gravity="right|center"
+                android:paddingRight="20dp"
+                android:background="@drawable/custom_edittext" />
 
         </LinearLayout>
 
@@ -289,11 +297,13 @@
                 android:textSize="13dp" />
 
             <Spinner
+                android:paddingStart="45dp"
                 android:id="@+id/spin_quoctich_user"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:layout_marginRight="5dp"
+                android:gravity="center"
                 android:background="@drawable/custom_spinner1" />
 
         </LinearLayout>
@@ -306,7 +316,8 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/button"
             android:text="Lưu"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF"
+            app:backgroundTint="@null"/>
     </LinearLayout>
 
 </ScrollView>

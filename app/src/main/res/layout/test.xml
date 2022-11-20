@@ -2,8 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="10dp">
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,13 +33,12 @@
                     android:textColor="@color/black"
                     android:textSize="9dp" />
 
-                <TextView
+                <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingStart="30dp"
-                    android:text="Họ tên: Nguyễn Văn A"
-                    android:textColor="@color/black"
-                    android:textSize="12dp" />
+                    android:layout_marginStart="90dp"
+                    android:baselineAligned="false"
+                    android:text="Đặt vé" />
             </LinearLayout>
 
             <LinearLayout
@@ -81,7 +79,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Giờ bay:   "
+                    android:text="Giờ bay: "
                     android:textColor="@color/black"
                     android:textSize="10dp" />
 
@@ -108,16 +106,6 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_gravity="center"
-        android:backgroundTint="#DAD4D4"
-        android:text="Xác nhận"
-        android:textAllCaps="false"
-        android:textColor="#29236F"
-        android:textSize="12dp" />
 
     <ImageView
         android:layout_width="match_parent"
@@ -155,13 +143,13 @@
                     android:textColor="@color/black"
                     android:textSize="9dp" />
 
-                <TextView
+                <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingStart="30dp"
-                    android:text="Họ tên: Nguyễn Văn A"
-                    android:textColor="@color/black"
-                    android:textSize="12dp" />
+                    android:layout_marginStart="90dp"
+                    android:baselineAligned="false"
+                    android:text="Đặt vé" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -230,16 +218,6 @@
         </LinearLayout>
     </LinearLayout>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_gravity="center"
-        android:backgroundTint="#DAD4D4"
-        android:text="Xác nhận"
-        android:textAllCaps="false"
-        android:textColor="#29236F"
-        android:textSize="12dp" />
-
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -276,13 +254,12 @@
                     android:textColor="@color/black"
                     android:textSize="9dp" />
 
-                <TextView
+                <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingStart="30dp"
-                    android:text="Họ tên: Nguyễn Văn A"
-                    android:textColor="@color/black"
-                    android:textSize="12dp" />
+                    android:layout_marginStart="90dp"
+                    android:baselineAligned="false"
+                    android:text="Đặt vé" />
             </LinearLayout>
 
             <LinearLayout
@@ -351,19 +328,10 @@
         </LinearLayout>
     </LinearLayout>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_gravity="center"
-        android:backgroundTint="#DAD4D4"
-        android:text="Xác nhận"
-        android:textAllCaps="false"
-        android:textColor="#29236F"
-        android:textSize="12dp" />
-
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#C31616"
         android:src="@drawable/img_gachngang" />
+
 </LinearLayout>

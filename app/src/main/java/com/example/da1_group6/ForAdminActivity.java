@@ -41,13 +41,6 @@ public class ForAdminActivity extends AppCompatActivity {
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
 
-        binding.appBarForAdmin.toolbar.post(new Runnable() {
-            @Override
-            public void run() {
-                Drawable draw = ResourcesCompat.getDrawable(getResources(), R.drawable.img_menu_resize, null);
-                binding.appBarForAdmin.toolbar.setNavigationIcon(draw);
-            }
-        });
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_qlyvemb_admin, R.id.nav_hangmb_admin, R.id.nav_qlynv_admin, R.id.nav_doanhthu_admin, R.id.nav_topmb_admin, R.id.nav_doimk_admin)

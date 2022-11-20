@@ -41,13 +41,6 @@ public class ForStaffActivity extends AppCompatActivity {
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
 
-        binding.appBarForStaff.toolbar.post(new Runnable() {
-            @Override
-            public void run() {
-                Drawable draw = ResourcesCompat.getDrawable(getResources(), R.drawable.img_menu_resize, null);
-                binding.appBarForStaff.toolbar.setNavigationIcon(draw);
-            }
-        });
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_qlyvemb_staff, R.id.nav_xnvemb_staff, R.id.nav_doanhthu_staff, R.id.nav_info_staff, R.id.nav_doimk_staff)

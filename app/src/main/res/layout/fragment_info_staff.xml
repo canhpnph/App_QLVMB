@@ -183,10 +183,11 @@
             android:textSize="13dp" />
 
         <Spinner
+            android:paddingLeft="45dp"
             android:id="@+id/spin_sex_staff"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_gravity="center"
+            android:layout_gravity="center|right"
             android:layout_marginRight="5dp"
             android:background="@drawable/custom_spinner1"
             android:gravity="right" />
@@ -216,11 +217,13 @@
             android:textSize="13dp" />
 
         <Spinner
+            android:paddingStart="45dp"
             android:id="@+id/spin_quoctich_staff"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_gravity="center"
             android:layout_marginRight="5dp"
+            android:gravity="center"
             android:background="@drawable/custom_spinner1" />
 
     </LinearLayout>
@@ -232,6 +235,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:background="@drawable/button"
+        app:backgroundTint="@null"
         android:text="Lưu"
         android:textColor="#FFFFFF" />
 </LinearLayout>

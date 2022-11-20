@@ -25,7 +25,7 @@ import java.util.Calendar;
 
 public class Fragment_Doanhthu_admin extends Fragment {
     TextView tv_datefrom, tv_dateto;
-    ImageView imgdatefrom, imgdatefrom2, imgdateto, imgdateto2;
+    ImageView imgdatefrom, imgdateto;
     Spinner spinner;
 
     @Override
@@ -40,9 +40,7 @@ public class Fragment_Doanhthu_admin extends Fragment {
         tv_datefrom = view.findViewById(R.id.tv_datefrom);
         tv_dateto = view.findViewById(R.id.tv_dateto);
         imgdatefrom = view.findViewById(R.id.img_date_from);
-        imgdatefrom2 = view.findViewById(R.id.img_date_from2);
         imgdateto = view.findViewById(R.id.img_date_to);
-        imgdateto2 = view.findViewById(R.id.img_date_to2);
         spinner = view.findViewById(R.id.spinner);
 
         imgdatefrom.setOnClickListener(new View.OnClickListener() {
@@ -52,12 +50,6 @@ public class Fragment_Doanhthu_admin extends Fragment {
             }
         });
 
-        imgdatefrom2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                date_from();
-            }
-        });
 
         imgdateto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,12 +58,6 @@ public class Fragment_Doanhthu_admin extends Fragment {
             }
         });
 
-        imgdateto2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                date_to();
-            }
-        });
 
         String[] list = {"Tất cả nhân viên", "ABC - NV01", "XYZ - NV02", "IJK - NV03"};
         ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1,list);

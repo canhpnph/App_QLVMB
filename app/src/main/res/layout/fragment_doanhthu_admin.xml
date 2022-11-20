@@ -8,6 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_gravity="center"
         android:padding="11dp">
 
         <ImageView
@@ -26,12 +27,6 @@
             android:textColor="@color/black"
             android:textSize="13dp" />
 
-        <ImageView
-            android:id="@+id/img_date_from2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_down" />
 
         <TextView
             android:layout_width="1dp"
@@ -57,12 +52,6 @@
             android:textColor="@color/black"
             android:textSize="13dp" />
 
-        <ImageView
-            android:id="@+id/img_date_to2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_down" />
     </LinearLayout>
 
 

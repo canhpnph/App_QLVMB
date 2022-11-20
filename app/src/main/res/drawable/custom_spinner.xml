@@ -5,8 +5,7 @@
             <item>
 
                 <shape android:shape="rectangle">
-                    <gradient android:centerColor="#42B8FF" android:endColor="#7BCEFF" android:startColor="#009FFF" android:type="linear" />
-
+                    <solid android:color="#4F72B6" />
                     <corners android:radius="10dp" />
 
                     <padding android:left="12dp" android:right="12dp" />

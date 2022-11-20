@@ -41,14 +41,6 @@ public class ForUserActivity extends AppCompatActivity {
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
 
-        binding.appBarForUser.toolbar.post(new Runnable() {
-            @Override
-            public void run() {
-                Drawable draw = ResourcesCompat.getDrawable(getResources(), R.drawable.img_menu_resize, null);
-                binding.appBarForUser.toolbar.setNavigationIcon(draw);
-            }
-        });
-
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_dsve_user, R.id.nav_datve_user, R.id.nav_info_user, R.id.nav_wallet_user, R.id.nav_doimk_user)
                 .setOpenableLayout(drawer)

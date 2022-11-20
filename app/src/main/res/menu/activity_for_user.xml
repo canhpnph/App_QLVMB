@@ -12,7 +12,7 @@
                     android:title="Danh sách vé" />
                 <item
                     android:id="@+id/nav_datve_user"
-                    android:icon="@drawable/img_xnvmb_menu"
+                    android:icon="@drawable/img_datve"
                     android:title="Đặt vé" />
 
             </menu>
@@ -27,7 +27,7 @@
                     android:title="Thông tin cá nhân" />
                 <item
                     android:id="@+id/nav_wallet_user"
-                    android:icon="@drawable/custom_icon_retype_passw"
+                    android:icon="@drawable/img_wallet_menu"
                     android:title="Ví của tôi" />
                 <item
                     android:id="@+id/nav_doimk_user"

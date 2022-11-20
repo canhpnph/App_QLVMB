@@ -19,7 +19,6 @@ public class Activity_Register extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        overridePendingTransition(R.anim.animation1, R.anim.animation2);
 
         btnReg = findViewById(R.id.btnRegister);
         edt_email = findViewById(R.id.edt_email);
@@ -70,6 +69,5 @@ public class Activity_Register extends AppCompatActivity {
 
     public void backto_login(View view) {
         onBackPressed();
-        overridePendingTransition(R.anim.animation2, R.anim.animation1);
     }
 }
