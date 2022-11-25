@@ -28,7 +28,7 @@ public class Activity_Login extends AppCompatActivity {
         showPass = findViewById(R.id.showPass);
 
         overridePendingTransition(R.anim.animation1, R.anim.animation2);
-
+// Dũng đẹp trai khoai to
       //Huy tét
         edt_pass.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
