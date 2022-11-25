@@ -17,7 +17,7 @@ public class DAO_ChuyenBay {
     public DAO_ChuyenBay(Context context) {
         sql = new SQLite(context);
     }
-
+//dcm
     public ArrayList<ChuyenBay> getAll() {
         ArrayList<ChuyenBay> list = new ArrayList<>();
         dtb = sql.getReadableDatabase();
