@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.da1_group6.R;
-import com.example.da1_group6.adapter.Adapter_Frag_Collection;
+import com.example.da1_group6.adapter.Adapter_Frag_Collection_user;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -20,7 +20,7 @@ public class Fragment_QLVMB_user extends Fragment {
 
     TabLayout tab;
     ViewPager2 viewPager2;
-    Adapter_Frag_Collection adapter;
+    Adapter_Frag_Collection_user adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,8 +33,8 @@ public class Fragment_QLVMB_user extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         viewPager2 = view.findViewById(R.id.viewpager2);
-        tab = view.findViewById(R.id.tab);
-        adapter = new Adapter_Frag_Collection(this);
+        tab = view.findViewById(R.id.tab_user);
+        adapter = new Adapter_Frag_Collection_user(this);
         viewPager2.setAdapter(adapter);
         TabLayoutMediator mediator = new TabLayoutMediator(tab, viewPager2, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override

@@ -7,8 +7,8 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import com.example.da1_group6.ui_user.Fragment_Ve_chuaXN;
 import com.example.da1_group6.ui_user.Fragment_Ve_daXN;
 
-public class Adapter_Frag_Collection extends FragmentStateAdapter {
-    public Adapter_Frag_Collection(@NonNull Fragment fragment) {
+public class Adapter_Frag_Collection_user extends FragmentStateAdapter {
+    public Adapter_Frag_Collection_user(@NonNull Fragment fragment) {
         super(fragment);
     }
 

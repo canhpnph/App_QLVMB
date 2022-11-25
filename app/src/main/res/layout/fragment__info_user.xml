@@ -40,15 +40,19 @@
                 app:layout_anchorGravity="center" />
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16dp"
-            android:textColor="@color/black"
-            android:text="Nguyễn Văn A"
+        <EditText
+            android:id="@+id/edt_name_user"
+            android:layout_width="350dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="5dp"
+            android:hint="Nguyễn Văn An"
+            android:textSize="17dp"
+            android:paddingStart="10dp"
             android:gravity="center"
-            android:textStyle="bold"
-            android:layout_marginTop="15dp" />
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_edittext" />
+
 
         <ImageView
             android:layout_width="400dp"
