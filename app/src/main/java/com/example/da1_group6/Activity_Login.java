@@ -34,6 +34,8 @@ public class Activity_Login extends AppCompatActivity {
         // nhầm mẹ email =))
         // vcl sao lại gộp project vào rồi =))
         //mat me luon :))
+
+        // cảnh test commit
         edt_pass.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
