@@ -17,7 +17,7 @@ public class Activity_Login extends AppCompatActivity {
     EditText edt_email, edt_pass;
     Button btnLogin;
     ImageView showPass;
-    //huy test comitttttttt
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,13 +29,7 @@ public class Activity_Login extends AppCompatActivity {
 
         overridePendingTransition(R.anim.animation1, R.anim.animation2);
 
-        // huy commit test git 1
-        // không. dcm cần tài khoản ở cái git bash nữa cơ. đợi tí đang xam lại video
-        // nhầm mẹ email =))
-        // vcl sao lại gộp project vào rồi =))
-        //mat me luon :))
-
-        // cảnh test commit
+      //Huy tét
         edt_pass.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
