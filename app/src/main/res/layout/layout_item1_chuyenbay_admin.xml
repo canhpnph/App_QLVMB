@@ -14,8 +14,9 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/logo_mb"
+            android:id="@+id/logo_mb_chuyenbay"
             android:layout_width="100dp"
+            android:paddingStart="10dp"
             android:layout_height="90dp"
             android:layout_gravity="center"
             android:src="@drawable/logo_vietjet" />
@@ -41,6 +42,7 @@
                     android:textSize="10dp" />
 
                 <TextView
+                    android:id="@+id/tv_giave"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="16dp"

@@ -14,7 +14,7 @@
                 <item
                     android:id="@+id/nav_hangmb_admin"
                     android:icon="@drawable/img_hangmb_menu"
-                    android:title="Hãng máy bay" />
+                    android:title="QL chuyến bay / hãng máy bay" />
 
                 <item
                     android:id="@+id/nav_qlynv_admin"
