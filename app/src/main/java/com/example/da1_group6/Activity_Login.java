@@ -31,6 +31,8 @@ public class Activity_Login extends AppCompatActivity {
 
         // bây giờ tôi hướng dẫn chỗ up code lên git nhé.  nokhìn kĩ không lại quê ok ddeer quay lai mot the :V
 
+        //hello dũng nhé
+
         edt_pass.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
