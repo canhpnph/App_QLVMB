@@ -17,7 +17,7 @@ public class Activity_Login extends AppCompatActivity {
     EditText edt_email, edt_pass;
     Button btnLogin;
     ImageView showPass;
-
+//thang alo
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
