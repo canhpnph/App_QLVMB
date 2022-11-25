@@ -32,8 +32,8 @@ public class Activity_Login extends AppCompatActivity {
         // huy commit test git 1
         // không. dcm cần tài khoản ở cái git bash nữa cơ. đợi tí đang xam lại video
         // nhầm mẹ email =))
-
-        // cảnh mới comment ở đây. đây là đoạn update code
+        // vcl sao lại gộp project vào rồi =))
+        //mat me luon :))
         edt_pass.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
