@@ -29,6 +29,10 @@ public class Activity_Login extends AppCompatActivity {
 
         overridePendingTransition(R.anim.animation1, R.anim.animation2);
 
+        // bây giờ tôi hướng dẫn chỗ up code lên git nhé.  nokhìn kĩ không lại quê ok ddeer quay lai mot the :V
+
+        //hello dũng nhé
+
         edt_pass.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
