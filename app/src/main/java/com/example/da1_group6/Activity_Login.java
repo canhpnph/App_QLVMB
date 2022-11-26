@@ -30,10 +30,6 @@ public class Activity_Login extends AppCompatActivity {
 
         edt_pass.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
-        // tuyển test commit
-
-        //hello tuyển nhé
-
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
