@@ -26,7 +26,7 @@ public class Activity_Login extends AppCompatActivity {
         edt_email = findViewById(R.id.edt_email);
         edt_pass = findViewById(R.id.edt_pass);
         showPass = findViewById(R.id.showPass);
-
+//test
         overridePendingTransition(R.anim.animation1, R.anim.animation2);
 
         edt_pass.setTransformationMethod(PasswordTransformationMethod.getInstance());
