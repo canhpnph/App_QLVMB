@@ -4,11 +4,12 @@ import android.graphics.Bitmap;
 
 public class KhachHang {
     String makh,tenkh, ngaysinh, email, sdt, cccd;
-    int gioitinh;
-    String diachi,  quoctich, matkhau;
+    int gioitinh, quoctich;
+    String diachi, matkhau;
     Bitmap image;
+    int sodu;
 
-    public KhachHang(String makh, String tenkh, String ngaysinh, String email, String sdt, String cccd, int gioitinh, String diachi, String quoctich, String matkhau, Bitmap image) {
+    public KhachHang(String makh, String tenkh, String ngaysinh, String email, String sdt, String cccd, int gioitinh, String diachi, int quoctich, String matkhau, Bitmap image, int sodu) {
         this.makh = makh;
         this.tenkh = tenkh;
         this.ngaysinh = ngaysinh;
@@ -20,6 +21,12 @@ public class KhachHang {
         this.quoctich = quoctich;
         this.matkhau = matkhau;
         this.image = image;
+        this.sodu = sodu;
+    }
+
+    public KhachHang(String email, String matkhau) {
+        this.email = email;
+        this.matkhau = matkhau;
     }
 
     public KhachHang() {
@@ -89,11 +96,11 @@ public class KhachHang {
         this.diachi = diachi;
     }
 
-    public String getQuoctich() {
+    public int getQuoctich() {
         return quoctich;
     }
 
-    public void setQuoctich(String quoctich) {
+    public void setQuoctich(int quoctich) {
         this.quoctich = quoctich;
     }
 
@@ -111,5 +118,13 @@ public class KhachHang {
 
     public void setImage(Bitmap image) {
         this.image = image;
+    }
+
+    public int getSodu() {
+        return sodu;
+    }
+
+    public void setSodu(int sodu) {
+        this.sodu = sodu;
     }
 }

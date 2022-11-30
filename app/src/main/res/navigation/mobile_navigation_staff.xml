@@ -31,7 +31,7 @@
 
     <fragment
         android:id="@+id/nav_doimk_staff"
-        android:name="com.example.da1_group6.ui_admin.Fragment_DoiMK"
+        android:name="com.example.da1_group6.ui_staff.Fragment_DoiMK_staff"
         android:label="Đổi mật khẩu"
         tools:layout="@layout/fragment_doi_mk" />
 

@@ -3,21 +3,38 @@ package com.example.da1_group6;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.da1_group6.dao.DAO_KhachHang;
+import com.example.da1_group6.dao.DAO_QLNV;
+import com.example.da1_group6.dao.DAO_admin;
+import com.example.da1_group6.database.SQLite;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Activity_Login extends AppCompatActivity {
     EditText edt_email, edt_pass;
     Button btnLogin;
     ImageView showPass;
-//thang alo
+    CheckBox ckbox;
+    List<Object> list = new ArrayList<>();
+    DAO_admin dao_admin;
+    DAO_QLNV dao_nv;
+    DAO_KhachHang dao_kh;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,25 +43,44 @@ public class Activity_Login extends AppCompatActivity {
         edt_email = findViewById(R.id.edt_email);
         edt_pass = findViewById(R.id.edt_pass);
         showPass = findViewById(R.id.showPass);
+        ckbox = findViewById(R.id.checkbox);
+
+        dao_admin = new DAO_admin(this);
+        dao_nv = new DAO_QLNV(this);
+        dao_kh = new DAO_KhachHang(this);
+
         overridePendingTransition(R.anim.animation1, R.anim.animation2);
 
         edt_pass.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
+        list = readAcc();
+        if (list.size() > 0) {
+            edt_email.setText(list.get(0).toString());
+            edt_pass.setText(list.get(1).toString());
+            ckbox.setChecked((boolean) list.get(2));
+        }
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(check()) {
-                    if(edt_email.getText().toString().trim().equals("1") && edt_pass.getText().toString().trim().equals("a")) {
+                String user = edt_email.getText().toString();
+                String pass = edt_pass.getText().toString();
+                boolean check = ckbox.isChecked();
+                saveAcc(user, pass, check);
+
+                if (check()) {
+                    if (dao_admin.checkAccount(user, pass) > 0) {
                         startActivity(new Intent(Activity_Login.this, ForAdminActivity.class));
                         overridePendingTransition(R.anim.slide_in_dialog, R.anim.slide_out_dialog);
-                    }
-                    else if(edt_email.getText().toString().trim().equals("2") && edt_pass.getText().toString().trim().equals("a")) {
+                        Toast.makeText(Activity_Login.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                    } else if (dao_nv.checkAccount(user, pass) > 0) {
                         startActivity(new Intent(Activity_Login.this, ForStaffActivity.class));
                         overridePendingTransition(R.anim.slide_in_dialog, R.anim.slide_out_dialog);
-                    }
-                    else if(edt_email.getText().toString().trim().equals("3") && edt_pass.getText().toString().trim().equals("a")) {
+                        Toast.makeText(Activity_Login.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                    } else if (dao_kh.checkAccount(user, pass) > 0) {
                         startActivity(new Intent(Activity_Login.this, ForUserActivity.class));
                         overridePendingTransition(R.anim.slide_in_dialog, R.anim.slide_out_dialog);
+                        Toast.makeText(Activity_Login.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(Activity_Login.this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
                         return;
@@ -56,14 +92,13 @@ public class Activity_Login extends AppCompatActivity {
         showPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(v.getId()==R.id.showPass){
-                    if(edt_pass.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
-                        ((ImageView)(v)).setImageResource(R.drawable.ic_visibility_off);
+                if (v.getId() == R.id.showPass) {
+                    if (edt_pass.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())) {
+                        ((ImageView) (v)).setImageResource(R.drawable.ic_visibility_off);
                         //Show Password
                         edt_pass.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                    }
-                    else{
-                        ((ImageView)(v)).setImageResource(R.drawable.ic_visibility);
+                    } else {
+                        ((ImageView) (v)).setImageResource(R.drawable.ic_visibility);
                         //Hide Password
                         edt_pass.setTransformationMethod(PasswordTransformationMethod.getInstance());
                     }
@@ -78,10 +113,31 @@ public class Activity_Login extends AppCompatActivity {
     }
 
     public boolean check() {
-        if(edt_email.getText().toString().trim().equals("") && edt_pass.getText().toString().trim().equals("")) {
+        if (edt_email.getText().toString().trim().equals("") && edt_pass.getText().toString().trim().equals("")) {
             Toast.makeText(this, "Vui lòng nhập đầy đủ thông tin!", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
+    }
+
+    public void saveAcc(String user, String pass, boolean check) {
+        SharedPreferences preferences = getSharedPreferences("TB", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        if (check == false) {
+            editor.clear();
+        } else {
+            editor.putString("User", user);
+            editor.putString("Pass", pass);
+            editor.putBoolean("Check", check);
+        }
+        editor.commit();
+    }
+
+    List<Object> readAcc() {
+        SharedPreferences s = getSharedPreferences("TB", MODE_PRIVATE);
+        list.add(s.getString("User", ""));
+        list.add(s.getString("Pass", ""));
+        list.add(s.getBoolean("Check", false));
+        return list;
     }
 }

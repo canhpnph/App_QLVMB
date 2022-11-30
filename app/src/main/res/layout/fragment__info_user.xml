@@ -10,16 +10,16 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/avatar_user"
             android:layout_width="130dp"
             android:layout_height="130dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:src="@drawable/person" />
+            android:src="@drawable/img_avatar" />
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
-            android:id="@+id/btn_camera_info"
+            android:id="@+id/btn_camera_info_user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -50,7 +50,7 @@
             android:textSize="17dp"
             android:paddingStart="10dp"
             android:gravity="center"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/custom_edittext" />
 
 
@@ -163,6 +163,7 @@
                 android:layout_gravity="center"
                 android:layout_marginRight="5dp"
                 android:hint="canhpnph@fpt.edu.vn"
+                android:editable="false"
                 android:textSize="14dp"
                 android:paddingStart="10dp"
                 android:gravity="right|center"

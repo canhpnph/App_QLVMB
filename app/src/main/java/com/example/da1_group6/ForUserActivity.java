@@ -1,12 +1,17 @@
 package com.example.da1_group6;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
+import android.widget.TextView;
 
+import com.example.da1_group6.dao.DAO_KhachHang;
+import com.example.da1_group6.model.KhachHang;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -24,10 +29,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.da1_group6.databinding.ActivityForUserBinding;
 
+import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class ForUserActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityForUserBinding binding;
+    DAO_KhachHang dao;
+    ArrayList<KhachHang> list;
+    KhachHang kh;
+    TextView tv_hello, sodu;
+    CircleImageView avatar;
+    String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +55,7 @@ public class ForUserActivity extends AppCompatActivity {
 
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
+
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_dsve_user, R.id.nav_datve_user, R.id.nav_info_user, R.id.nav_wallet_user, R.id.nav_doimk_user)
@@ -92,6 +108,19 @@ public class ForUserActivity extends AppCompatActivity {
 
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        View viewheader = navigationView.getHeaderView(0);
+        tv_hello = viewheader.findViewById(R.id.tv_hello_user);
+        avatar = viewheader.findViewById(R.id.avatar_inheader_user);
+        sodu = viewheader.findViewById(R.id.sodu_in_header);
+
+        SharedPreferences preferences = getSharedPreferences("TB", Context.MODE_PRIVATE);
+        email = preferences.getString("User", "");
+
+        reloadData();
+        if(kh.getImage() == null) {
+            avatar.setImageResource(R.drawable.img_avatar);
+        }
     }
 
     @Override
@@ -106,4 +135,22 @@ public class ForUserActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        reloadData();
+    }
+
+    public void reloadData() {
+        dao = new DAO_KhachHang(this);
+        list = dao.getUser(email);
+        kh = list.get(0);
+
+        tv_hello.setText("Xin chào, \n" + kh.getTenkh());
+        avatar.setImageBitmap(kh.getImage());
+        sodu.setText("Số dư: " + kh.getSodu() + " vnđ");
+    }
+
 }

@@ -62,7 +62,7 @@
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/fragment_doi_mk.xml" value="0.25" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/fragment_hangmb.xml" value="0.2359375" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/fragment_hangmb_admin.xml" value="0.2" />
-        <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/fragment_info_staff.xml" value="0.25" />
+        <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/fragment_info_staff.xml" value="0.264" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/fragment_qlnv.xml" value="0.2359375" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/fragment_qlnv_admin.xml" value="0.2" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/fragment_qlvmb_admin.xml" value="0.25" />
@@ -85,6 +85,7 @@
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/layout_item1_vmb_cxn_user.xml" value="0.24635416666666668" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/layout_item1_vmb_user.xml" value="0.24635416666666668" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/layout_naptien.xml" value="0.2" />
+        <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/layout_select_image_from_camera.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/nav_header_for_admin.xml" value="0.19591836734693877" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/nav_header_for_staff.xml" value="0.19591836734693877" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/nav_header_for_user.xml" value="0.25" />
