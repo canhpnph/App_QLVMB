@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.da1_group6.R;
-import com.example.da1_group6.adapter.Adapter_Recycler_qlnv;
+import com.example.da1_group6.adapter.Adapter_Recycler_qlnv_admin;
 import com.example.da1_group6.dao.DAO_QLNV;
 import com.example.da1_group6.model.NhanVien;
 
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class Fragment_QLNV_admin extends Fragment {
     RecyclerView recyclerView;
-    Adapter_Recycler_qlnv adapter;
+    Adapter_Recycler_qlnv_admin adapter;
     DAO_QLNV dao;
     ArrayList<NhanVien> list = new ArrayList<>();
 
@@ -36,7 +36,7 @@ public class Fragment_QLNV_admin extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerview_qlynhanvien);
         dao = new DAO_QLNV(getContext());
         list = dao.getAll();
-        adapter = new Adapter_Recycler_qlnv(list, getContext());
+        adapter = new Adapter_Recycler_qlnv_admin(list, getContext());
         recyclerView.setAdapter(adapter);
     }
 }

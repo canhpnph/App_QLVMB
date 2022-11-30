@@ -17,11 +17,51 @@ public class DAO_ChuyenBay {
     public DAO_ChuyenBay(Context context) {
         sql = new SQLite(context);
     }
-//dcm
+
     public ArrayList<ChuyenBay> getAll() {
         ArrayList<ChuyenBay> list = new ArrayList<>();
         dtb = sql.getReadableDatabase();
         Cursor cursor = dtb.rawQuery("select * from CHUYENBAY", null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            ChuyenBay cb = new ChuyenBay();
+            cb.setMacb(cursor.getString(0));
+            cb.setDiemdi(cursor.getString(1));
+            cb.setDiemden(cursor.getString(2));
+            cb.setGiave(cursor.getInt(3));
+            cb.setTimebay(cursor.getString(4));
+            cb.setMamb(cursor.getString(5));
+            list.add(cb);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return list;
+    }
+
+    public ArrayList<ChuyenBay> getChuyenBay(String diemdi, String diemden, String mamb, String ngaybay) {
+        ArrayList<ChuyenBay> list = new ArrayList<>();
+        dtb = sql.getReadableDatabase();
+        Cursor cursor = dtb.rawQuery("select * from CHUYENBAY where diemdi = ? and diemden = ? and mamb = ? and timebay like '%" + ngaybay + "%'", new String[] {diemdi, diemden, mamb});
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            ChuyenBay cb = new ChuyenBay();
+            cb.setMacb(cursor.getString(0));
+            cb.setDiemdi(cursor.getString(1));
+            cb.setDiemden(cursor.getString(2));
+            cb.setGiave(cursor.getInt(3));
+            cb.setTimebay(cursor.getString(4));
+            cb.setMamb(cursor.getString(5));
+            list.add(cb);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return list;
+    }
+
+    public ArrayList<ChuyenBay> getAllChuyenBay(String diemdi, String diemden, String ngaybay) {
+        ArrayList<ChuyenBay> list = new ArrayList<>();
+        dtb = sql.getReadableDatabase();
+        Cursor cursor = dtb.rawQuery("select * from CHUYENBAY where diemdi = ? and diemden = ? and timebay like '%" + ngaybay + "%'", new String[] {diemdi, diemden});
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             ChuyenBay cb = new ChuyenBay();

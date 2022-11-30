@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.da1_group6.R;
-import com.example.da1_group6.adapter.Adapter_Recycler_hangmb;
+import com.example.da1_group6.adapter.Adapter_Recycler_hangmb_admin;
 import com.example.da1_group6.dao.DAO_HangMB;
 import com.example.da1_group6.model.HangMB;
 
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class Fragment_HangMB_admin extends Fragment {
     RecyclerView recyclerView;
-    Adapter_Recycler_hangmb adapter;
+    Adapter_Recycler_hangmb_admin adapter;
     ArrayList<HangMB> list = new ArrayList<>();
     DAO_HangMB dao;
 
@@ -36,7 +36,7 @@ public class Fragment_HangMB_admin extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerview_hangmb);
         dao = new DAO_HangMB(getContext());
         list = dao.getAll();
-        adapter = new Adapter_Recycler_hangmb(list, getContext());
+        adapter = new Adapter_Recycler_hangmb_admin(list, getContext());
         recyclerView.setAdapter(adapter);
     }
 }

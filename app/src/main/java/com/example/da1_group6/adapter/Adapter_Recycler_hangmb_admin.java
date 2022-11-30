@@ -15,24 +15,24 @@ import com.example.da1_group6.model.HangMB;
 
 import java.util.ArrayList;
 
-public class Adapter_Recycler_hangmb extends RecyclerView.Adapter<Adapter_Recycler_hangmb.ViewHolder> {
+public class Adapter_Recycler_hangmb_admin extends RecyclerView.Adapter<Adapter_Recycler_hangmb_admin.ViewHolder> {
     ArrayList<HangMB> list;
     Context context;
 
-    public Adapter_Recycler_hangmb(ArrayList<HangMB> list, Context context) {
+    public Adapter_Recycler_hangmb_admin(ArrayList<HangMB> list, Context context) {
         this.list = list;
         this.context = context;
     }
 
     @NonNull
     @Override
-    public Adapter_Recycler_hangmb.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public Adapter_Recycler_hangmb_admin.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         return new ViewHolder(inflater.inflate(R.layout.layout_item1_hangmb, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Adapter_Recycler_hangmb.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull Adapter_Recycler_hangmb_admin.ViewHolder holder, int position) {
         HangMB hmb = list.get(position);
         holder.tv_tenhmb.setText(hmb.getTenmb());
         if(hmb.getMamb().equalsIgnoreCase("VNA")) {

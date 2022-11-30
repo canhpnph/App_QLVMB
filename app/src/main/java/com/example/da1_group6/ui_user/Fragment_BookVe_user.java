@@ -1,44 +1,47 @@
 package com.example.da1_group6.ui_user;
 
 import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
+import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.example.da1_group6.R;
-import com.google.android.material.snackbar.Snackbar;
-
-import org.w3c.dom.Text;
+import com.example.da1_group6.adapter.Adapter_Recycler_BookVe_user;
+import com.example.da1_group6.dao.DAO_ChuyenBay;
+import com.example.da1_group6.dao.DAO_HangMB;
+import com.example.da1_group6.model.ChuyenBay;
+import com.example.da1_group6.model.HangMB;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 
 
 public class Fragment_BookVe_user extends Fragment {
     Spinner spin_from, spin_to, spin_hangmb;
-    Button btn_search_chuyenbay, btn_datve;
+    Button btn_search_chuyenbay;
     ImageView choose_day;
-    TextView tv_date;
-
+    TextView tv_date, tv_no_result;
+    RecyclerView recyclerView;
+    DAO_ChuyenBay dao;
+    ArrayList<ChuyenBay> list_cb;
+    Adapter_Recycler_BookVe_user adapter;
+    ArrayAdapter adapter_from, adapter_to, adapter_macb;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,16 +58,16 @@ public class Fragment_BookVe_user extends Fragment {
         btn_search_chuyenbay = view.findViewById(R.id.btn_search_chuyenbay);
         choose_day = view.findViewById(R.id.img_date_bookve_user);
         tv_date = view.findViewById(R.id.tv_date_bookve_user);
-        btn_datve = view.findViewById(R.id.btn_datve);
+        recyclerView = view.findViewById(R.id.recycleriew_chuyenbay_in_bookve);
+        tv_no_result = view.findViewById(R.id.tv_no_result);
 
-        String[] list = {"Hà Nội", "Hải Phòng", "Đà Nẵng", "Nha Trang", "TP HCM", "Phú Quốc"};
-        ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, list);
-        spin_from.setAdapter(adapter);
-        spin_to.setAdapter(adapter);
 
-        String[] list1 = {"Vietnam Airlines", "VietJet Airs", "Bamboo Airways"};
-        ArrayAdapter adapter1 = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, list1);
-        spin_hangmb.setAdapter(adapter1);
+        String[] list = {"Hà Nội", "Hải Phòng", "Đà Nẵng", "Nha Trang", "TP. HCM", "Phú Quốc"};
+        adapter_from = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, list);
+        spin_from.setAdapter(adapter_from);
+        spin_to.setAdapter(adapter_from);
+
+        getDataHangMB(spin_hangmb);
 
         choose_day.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,10 +76,34 @@ public class Fragment_BookVe_user extends Fragment {
             }
         });
 
-        btn_datve.setOnClickListener(new View.OnClickListener() {
+        btn_search_chuyenbay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDialog_Confirm();
+                String diemden = spin_from.getSelectedItem().toString();
+                String diemdi = spin_to.getSelectedItem().toString();
+                String ngaybay = tv_date.getText().toString().trim();
+                String mamb = "";
+
+                if(spin_hangmb.getSelectedItemPosition() == 0) {
+                    dao = new DAO_ChuyenBay(getContext());
+                    list_cb = dao.getAllChuyenBay(diemden, diemdi, ngaybay);
+                    adapter = new Adapter_Recycler_BookVe_user(list_cb, getContext());
+                    recyclerView.setAdapter(adapter);
+                } else {
+                    HashMap<String, Object> hashMap = (HashMap<String, Object>) spin_hangmb.getSelectedItem();
+                    mamb = (String) hashMap.get("mamb");
+
+                    dao = new DAO_ChuyenBay(getContext());
+                    list_cb = dao.getChuyenBay(diemden, diemdi, mamb, ngaybay);
+                    adapter = new Adapter_Recycler_BookVe_user(list_cb, getContext());
+                    recyclerView.setAdapter(adapter);
+                }
+
+                if(list_cb.isEmpty()) {
+                    tv_no_result.setText("Không tìm thấy kết quả phù hợp!");
+                } else {
+                    tv_no_result.setText("");
+                }
             }
         });
     }
@@ -93,7 +120,7 @@ public class Fragment_BookVe_user extends Fragment {
                         int thang = i1;
                         int ngay = i2;
                         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-                        calendar.set(nam,thang,ngay);
+                        calendar.set(nam, thang, ngay);
                         tv_date.setText(format.format(calendar.getTime()));
                     }
                 },
@@ -104,15 +131,21 @@ public class Fragment_BookVe_user extends Fragment {
         dialog.show();
     }
 
-    public void showDialog_Confirm() {
-        Dialog dialog = new Dialog(getContext());
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.dialog_confirm_bookve);
-        dialog.show();
+    public void getDataHangMB(Spinner spin_hangmb) {
+        DAO_HangMB dao = new DAO_HangMB(getContext());
+        ArrayList<HangMB> list = dao.getAll();
+        list.add(0, new HangMB(null, "Tất cả"));
+        ArrayList<HashMap<String, Object>> listHM = new ArrayList<>();
 
-        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
-        dialog.getWindow().setGravity(Gravity.BOTTOM);
+        for (HangMB hmb : list ) {
+            HashMap<String, Object> hm = new HashMap<>();
+            hm.put("mamb", hmb.getMamb());
+            hm.put("tenmb", hmb.getTenmb());
+            listHM.add(hm);
+        }
+
+        SimpleAdapter simpleAdapter = new SimpleAdapter(getContext(), listHM,
+                android.R.layout.simple_list_item_1, new String[] {"tenmb"}, new int[]{android.R.id.text1});
+        spin_hangmb.setAdapter(simpleAdapter);
     }
 }
