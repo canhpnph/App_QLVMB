@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.da1_group6.R;
 import com.example.da1_group6.adapter.Adapter_Recycler_xnvmb_staff;
@@ -27,6 +29,8 @@ public class Fragment_XNVMB_staff extends Fragment {
     ArrayList<VeMB> list;
     Adapter_Recycler_xnvmb_staff adapter;
     String user;
+    TextView tv_no_result;
+    ImageView img;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,10 +43,21 @@ public class Fragment_XNVMB_staff extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = view.findViewById(R.id.recyclerview_xnvmb_staff);
 
+        tv_no_result = view.findViewById(R.id.tv_no_result_cxn_staff);
+        img = view.findViewById(R.id.img_sad_cxn_staff);
+
         SharedPreferences preferences = getActivity().getSharedPreferences("TB", Context.MODE_PRIVATE);
         user = preferences.getString("User", "");
 
         reload();
+
+        if (list.isEmpty()) {
+            tv_no_result.setText("Hmm...Có vẻ như không có gì ở đây ");
+            img.setImageResource(R.drawable.img_sad);
+        } else {
+            tv_no_result.setText("");
+            img.setImageDrawable(null);
+        }
     }
 
     @Override

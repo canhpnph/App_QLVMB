@@ -38,6 +38,8 @@ public class Fragment_QLVMB_staff extends Fragment {
     ArrayList<VeMB> list;
     Adapter_Recycler_qlvmb_staff adapter;
     String user;
+    TextView tv_no_result;
+    ImageView img;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,11 +54,21 @@ public class Fragment_QLVMB_staff extends Fragment {
         tv_date = view.findViewById(R.id.tv_date_qlvmb_staff);
         recyclerView = view.findViewById(R.id.recyclerview_qlvmb_staff);
 
+        tv_no_result = view.findViewById(R.id.tv_no_result_dxn_staff);
+        img = view.findViewById(R.id.img_sad_dxn_staff);
+
         SharedPreferences preferences = getActivity().getSharedPreferences("TB", Context.MODE_PRIVATE);
         user = preferences.getString("User", "");
 
         reload();
 
+        if(list.isEmpty()) {
+            tv_no_result.setText("Hmm...Có vẻ như không có gì ở đây ");
+            img.setImageResource(R.drawable.img_sad);
+        } else {
+            tv_no_result.setText("");
+            img.setImageDrawable(null);
+        }
         img_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

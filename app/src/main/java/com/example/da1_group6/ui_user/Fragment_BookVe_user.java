@@ -41,7 +41,7 @@ public class Fragment_BookVe_user extends Fragment {
     DAO_ChuyenBay dao;
     ArrayList<ChuyenBay> list_cb;
     Adapter_Recycler_BookVe_user adapter;
-    ArrayAdapter adapter_from, adapter_to, adapter_macb;
+    ArrayAdapter adapter_from;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.da1_group6.R;
 import com.example.da1_group6.adapter.Adapter_Recycler_VeMB_cxn_user;
@@ -26,6 +28,8 @@ public class Fragment_Ve_chuaXN extends Fragment {
     ArrayList<VeMB> list;
     Adapter_Recycler_VeMB_cxn_user adapter;
     String email;
+    TextView tv_no_result;
+    ImageView img;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,10 +41,20 @@ public class Fragment_Ve_chuaXN extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = view.findViewById(R.id.recyclerview_vmb_cxn);
+        tv_no_result = view.findViewById(R.id.tv_no_result_cxn_user);
+        img = view.findViewById(R.id.img_sad_cxn_user);
 
         SharedPreferences preferences = getActivity().getSharedPreferences("TB", Context.MODE_PRIVATE);
         email = preferences.getString("User", "");
         reload();
+
+        if(list.isEmpty()) {
+            tv_no_result.setText("Hmm...Có vẻ như không có gì ở đây ");
+            img.setImageResource(R.drawable.img_sad);
+        } else {
+            tv_no_result.setText("");
+            img.setImageDrawable(null);
+        }
     }
 
     @Override

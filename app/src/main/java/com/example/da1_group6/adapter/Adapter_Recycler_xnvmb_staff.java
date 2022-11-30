@@ -7,11 +7,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.da1_group6.R;
+import com.example.da1_group6.dao.DAO_VeMB;
 import com.example.da1_group6.model.VeMB;
 
 import java.util.ArrayList;
@@ -19,6 +21,7 @@ import java.util.ArrayList;
 public class Adapter_Recycler_xnvmb_staff extends RecyclerView.Adapter<Adapter_Recycler_xnvmb_staff.ViewHolder> {
     ArrayList<VeMB> list;
     Context context;
+    DAO_VeMB dao;
 
     public Adapter_Recycler_xnvmb_staff(ArrayList<VeMB> list, Context context) {
         this.list = list;
@@ -35,6 +38,7 @@ public class Adapter_Recycler_xnvmb_staff extends RecyclerView.Adapter<Adapter_R
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         VeMB vmb = list.get(position);
+        dao = new DAO_VeMB(context);
 
         if(vmb.getMamb().equalsIgnoreCase("VNA")) {
             holder.img.setImageResource(R.drawable.logo_vnairlines);
@@ -53,7 +57,10 @@ public class Adapter_Recycler_xnvmb_staff extends RecyclerView.Adapter<Adapter_R
         holder.btn_xnvmb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                dao.updateVMB(new VeMB(vmb.getMavmb(), vmb.getMamb(), vmb.getMacb(), vmb.getManv(), vmb.getMakh(), vmb.getTimedatve(), 1));
+                Toast.makeText(context, "Xác nhận thành công!", Toast.LENGTH_SHORT).show();
+                notifyDataSetChanged();
+                holder.btn_xnvmb.setVisibility(View.GONE);
             }
         });
     }
@@ -78,5 +85,11 @@ public class Adapter_Recycler_xnvmb_staff extends RecyclerView.Adapter<Adapter_R
             tvtenkh = itemView.findViewById(R.id.tv_hoten_xnvmb_staff);
             btn_xnvmb = itemView.findViewById(R.id.btn_xnvmb_staff);
         }
+    }
+
+    @Override
+    public void onViewRecycled(@NonNull ViewHolder holder) {
+        super.onViewRecycled(holder);
+
     }
 }

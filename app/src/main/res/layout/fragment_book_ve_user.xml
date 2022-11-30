@@ -76,9 +76,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:padding="10dp"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="10dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -106,9 +106,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:paddingStart="40dp"
                 android:layout_marginTop="15dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingStart="40dp">
 
                 <ImageView
                     android:id="@+id/img_date_bookve_user"
@@ -128,7 +128,6 @@
             </LinearLayout>
 
 
-
         </LinearLayout>
 
         <Button
@@ -142,29 +141,25 @@
             android:text="Tìm Kiếm"
             android:textAllCaps="false" />
 
-        <androidx.coordinatorlayout.widget.CoordinatorLayout
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleriew_chuyenbay_in_bookve"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycleriew_chuyenbay_in_bookve"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
-            <TextView
-                android:id="@+id/tv_no_result"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="15dp"
-                android:fontFamily="@font/font_in_wallet"
-                android:textColor="@color/black"
-                app:layout_anchorGravity="bottom"
-                android:gravity="center"
-                app:layout_anchor="@id/recycleriew_chuyenbay_in_bookve"/>
-
-        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <TextView
+            android:id="@+id/tv_no_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/font_in_wallet"
+            android:gravity="center"
+            android:layout_marginTop="100dp"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            app:layout_anchor="@id/recycleriew_chuyenbay_in_bookve"
+            app:layout_anchorGravity="bottom" />
 
     </LinearLayout>
 </ScrollView>

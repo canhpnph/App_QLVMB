@@ -115,4 +115,14 @@ public class DAO_VeMB {
         cursor.close();
         return list;
     }
+
+    public boolean updateVMB(VeMB vmb){
+        dtb = sql.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("trangthai", vmb.getTrangthai());
+        if(dtb.update("VEMAYBAY", values, "mavmb = ?", new String[] {String.valueOf(vmb.getMavmb())}) < 0 ) {
+            return false;
+        }
+        return true;
+    }
 }
