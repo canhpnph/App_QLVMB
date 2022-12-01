@@ -13,15 +13,18 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.da1_group6.R;
 import com.example.da1_group6.dao.DAO_KhachHang;
+import com.example.da1_group6.dao.DAO_LSGD;
 import com.example.da1_group6.dao.DAO_VeMB;
 import com.example.da1_group6.model.ChuyenBay;
 import com.example.da1_group6.model.KhachHang;
+import com.example.da1_group6.model.LSGD;
 import com.example.da1_group6.model.VeMB;
 
 import java.text.SimpleDateFormat;
@@ -32,7 +35,8 @@ public class Adapter_Recycler_BookVe_user extends RecyclerView.Adapter<Adapter_R
     ArrayList<ChuyenBay> list;
     Context context;
     int giave = 0;
-    String mamb, macb, manv, makh;
+    String mamb, macb, manv;
+    int makh;
 
     @NonNull
     @Override
@@ -110,14 +114,31 @@ public class Adapter_Recycler_BookVe_user extends RecyclerView.Adapter<Adapter_R
                         DAO_VeMB dao = new DAO_VeMB(context);
                         VeMB vmb = new VeMB();
 
-                        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-                        String date = format.format(Calendar.getInstance().getTime());
+                        int sodu = kh.getSodu();
 
-                        dao.addVMB(new VeMB(vmb.getMavmb(), mamb, macb, manv, makh, date, 0));
-                        holder.btn_bookve.setText("Đã đặt vé");
-                        holder.btn_bookve.setEnabled(false);
-                        holder.btn_bookve.setTextColor(Color.WHITE);
-                        dialog.dismiss();
+                        if(sodu < cb.getGiave()) {
+                            Toast.makeText(context, "Số dư của bạn không đủ. Vui lòng nạp thêm tiền để tiếp tục sử dụng dịch vụ!", Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
+                            return;
+                        } else {
+                            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                            String date = format.format(Calendar.getInstance().getTime());
+
+                            dao.addVMB(new VeMB(vmb.getMavmb(), mamb, macb, manv, makh, date, 0));
+                            holder.btn_bookve.setText("Đã đặt vé");
+                            holder.btn_bookve.setEnabled(false);
+                            holder.btn_bookve.setTextColor(Color.WHITE);
+
+                            Toast.makeText(context, "Đặt vé thành công!", Toast.LENGTH_SHORT).show();
+                            int sodu_after = sodu - cb.getGiave();
+                            dao_user.update_Tien(new KhachHang(kh.getMakh(), kh.getTenkh(), kh.getNgaysinh(), kh.getEmail(), kh.getSdt(), kh.getCccd(), kh.getGioitinh(),
+                                    kh.getDiachi(), kh.getQuoctich(), kh.getMatkhau(), kh.getImage(), sodu_after));
+
+                            DAO_LSGD dao_lsgd = new DAO_LSGD(context);
+                            LSGD ls = new LSGD();
+                            dao_lsgd.addLS(new LSGD(ls.getId(), kh.getMakh(), "Mua vé máy bay", cb.getGiave(), date));
+                            dialog.dismiss();
+                        }
                     }
                 });
 

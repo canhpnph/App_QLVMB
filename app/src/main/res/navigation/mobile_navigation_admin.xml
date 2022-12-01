@@ -21,16 +21,18 @@
         android:name="com.example.da1_group6.ui_admin.Fragment_QLNV_admin"
         android:label="Quản lý nhân viên"
         tools:layout="@layout/fragment_qlnv_admin" />
+
+    <fragment
+        android:id="@+id/nav_confirm_money_admin"
+        android:name="com.example.da1_group6.ui_admin.Fragment_Confirm_Money_admin"
+        android:label="Xác nhận nạp tiền"
+        tools:layout="@layout/fragment__confirm__money" />
     <fragment
         android:id="@+id/nav_doanhthu_admin"
         android:name="com.example.da1_group6.ui_admin.Fragment_Doanhthu_admin"
         android:label="Doanh thu"
         tools:layout="@layout/fragment_doanhthu_admin" />
-    <fragment
-        android:id="@+id/nav_topmb_admin"
-        android:name="com.example.da1_group6.ui_admin.Fragment_TopMB_admin"
-        android:label="TOP hãng máy bay ưa dùng"
-        tools:layout="@layout/fragment_topmb_admin" />
+
     <fragment
         android:id="@+id/nav_doimk_admin"
         android:name="com.example.da1_group6.ui_admin.Fragment_DoiMK_admin"

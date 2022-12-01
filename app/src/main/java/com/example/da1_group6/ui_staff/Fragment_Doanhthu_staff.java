@@ -1,6 +1,8 @@
 package com.example.da1_group6.ui_staff;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,17 +14,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.da1_group6.R;
+import com.example.da1_group6.dao.DAO_VeMB;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class Fragment_Doanhthu_staff extends Fragment {
-    TextView tv_datefrom, tv_dateto;
+    TextView tv_datefrom, tv_dateto, tvtongdoanhthu, tvtongveban;
     ImageView imgdatefrom, imgdateto;
+    ImageView img_search;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -37,6 +43,10 @@ public class Fragment_Doanhthu_staff extends Fragment {
         imgdatefrom = view.findViewById(R.id.img_date_from_doanhthu_staff);
         imgdateto = view.findViewById(R.id.img_date_to_doanhthu_staff);
 
+        tvtongdoanhthu = view.findViewById(R.id.tv_tongdoanhthu_staff);
+        tvtongveban = view.findViewById(R.id.tv_tongveban_staff);
+        img_search = view.findViewById(R.id.ic_search_doanhthu_staff);
+
         imgdatefrom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,6 +59,25 @@ public class Fragment_Doanhthu_staff extends Fragment {
             @Override
             public void onClick(View v) {
                 date_to();
+            }
+        });
+
+        img_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences preferences = getActivity().getSharedPreferences("TB", Context.MODE_PRIVATE);
+                String manv = preferences.getString("User", "");
+
+                DAO_VeMB dao = new DAO_VeMB(getContext());
+
+                String date_from = tv_datefrom.getText().toString();
+                String date_to = tv_dateto.getText().toString();
+
+                int doanhthu_theo_staff = dao.get_tongdoanhthu_staff(manv, date_from, date_to);
+                int slveban_theo_staff = dao.get_tongveban_staff(manv, date_from, date_to);
+
+                tvtongdoanhthu.setText(doanhthu_theo_staff + " vnđ");
+                tvtongveban.setText(slveban_theo_staff + " vé được bán ra");
             }
         });
     }

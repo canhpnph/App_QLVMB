@@ -3,15 +3,16 @@ package com.example.da1_group6.model;
 public class ChuyenBay {
     String macb, diemdi, diemden;
     int giave;
-    String timebay;
+    String timebay, tongtime;
     String mamb;
 
-    public ChuyenBay(String macb, String diemdi, String diemden, int giave, String timebay, String mamb) {
+    public ChuyenBay(String macb, String diemdi, String diemden, int giave, String timebay,String tongtime, String mamb) {
         this.macb = macb;
         this.diemdi = diemdi;
         this.diemden = diemden;
         this.giave = giave;
         this.timebay = timebay;
+        this.tongtime = tongtime;
         this.mamb = mamb;
     }
 
@@ -64,5 +65,13 @@ public class ChuyenBay {
 
     public void setMamb(String mamb) {
         this.mamb = mamb;
+    }
+
+    public String getTongtime() {
+        return tongtime;
+    }
+
+    public void setTongtime(String tongtime) {
+        this.tongtime = tongtime;
     }
 }

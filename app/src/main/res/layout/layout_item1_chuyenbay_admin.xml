@@ -99,6 +99,20 @@
                         android:textColor="#0D2781"
                         android:textSize="10dp" />
 
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_marginStart="40dp"
+                        android:src="@drawable/img_oclock" />
+
+                    <TextView
+                        android:id="@+id/tv_tongtime_cb_admin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="13dp"
+                        android:text="1h 30m"
+                        android:textColor="@color/black"
+                        android:textSize="10dp" />
                 </LinearLayout>
 
 

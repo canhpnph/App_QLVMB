@@ -20,6 +20,11 @@
                     android:id="@+id/nav_qlynv_admin"
                     android:icon="@drawable/img_info_user_menu"
                     android:title="Quản lý nhân viên" />
+
+                <item
+                    android:id="@+id/nav_confirm_money_admin"
+                    android:icon="@drawable/ic_confirm_money"
+                    android:title="Xác nhận nạp tiền" />
             </menu>
         </item>
 
@@ -30,10 +35,6 @@
                     android:id="@+id/nav_doanhthu_admin"
                     android:icon="@drawable/img_doanhthu_menu"
                     android:title="Doanh thu"/>
-                <item
-                    android:id="@+id/nav_topmb_admin"
-                    android:icon="@drawable/img_top1_menu"
-                    android:title="TOP hãng máy bay ưa dùng"/>
             </menu>
         </item>
 

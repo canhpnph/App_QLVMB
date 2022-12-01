@@ -47,6 +47,7 @@ public class Adapter_Recycler_Chuyenbay extends RecyclerView.Adapter<Adapter_Rec
         holder.tvfrom.setText("From: " + cb.getDiemdi());
         holder.tvto.setText("To: " + cb.getDiemden());
         holder.tvtimebay.setText(cb.getTimebay());
+        holder.tvtongtime.setText(cb.getTongtime());
     }
 
     @Override
@@ -56,7 +57,7 @@ public class Adapter_Recycler_Chuyenbay extends RecyclerView.Adapter<Adapter_Rec
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView img;
-        TextView tvmacb, tvfrom, tvto, tvtimebay;
+        TextView tvmacb, tvfrom, tvto, tvtimebay, tvtongtime;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             img = itemView.findViewById(R.id.logo_mb_chuyenbay);
@@ -64,6 +65,7 @@ public class Adapter_Recycler_Chuyenbay extends RecyclerView.Adapter<Adapter_Rec
             tvfrom = itemView.findViewById(R.id.tv_from_it1_cb_admin);
             tvto = itemView.findViewById(R.id.tv_to_it1_cb_admin);
             tvtimebay = itemView.findViewById(R.id.tv_timebay);
+            tvtongtime = itemView.findViewById(R.id.tv_tongtime_cb_admin);
         }
     }
 }

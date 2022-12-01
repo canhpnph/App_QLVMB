@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import com.example.da1_group6.database.SQLite;
+import com.example.da1_group6.model.HoaDonNapTien;
 import com.example.da1_group6.model.KhachHang;
 import com.example.da1_group6.model.NhanVien;
 
@@ -32,7 +33,38 @@ public class DAO_KhachHang {
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             KhachHang kh = new KhachHang();
-            kh.setMakh(cursor.getString(0));
+            kh.setMakh(cursor.getInt(0));
+            kh.setTenkh(cursor.getString(1));
+            kh.setNgaysinh(cursor.getString(2));
+            kh.setEmail(cursor.getString(3));
+            kh.setSdt(cursor.getString(4));
+            kh.setCccd(cursor.getString(5));
+            kh.setGioitinh(cursor.getInt(6));
+            kh.setDiachi(cursor.getString(7));
+            kh.setQuoctich(cursor.getInt(8));
+            kh.setMatkhau(cursor.getString(9));
+
+            Bitmap bitmap = null;
+            byte[] imageByte = cursor.getBlob(10);
+            bitmap = BitmapFactory.decodeByteArray(imageByte, 0, imageByte.length);
+            kh.setImage(bitmap);
+            kh.setSodu(cursor.getInt(11));
+
+            list.add(kh);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return list;
+    }
+
+    public ArrayList<KhachHang> getUser_ID(int makh) {
+        ArrayList<KhachHang> list = new ArrayList<>();
+        dtb = sql.getReadableDatabase();
+        Cursor cursor = dtb.rawQuery("select * from KHACHHANG where makh = ?", new String[]{String.valueOf(makh)});
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            KhachHang kh = new KhachHang();
+            kh.setMakh(cursor.getInt(0));
             kh.setTenkh(cursor.getString(1));
             kh.setNgaysinh(cursor.getString(2));
             kh.setEmail(cursor.getString(3));
@@ -134,4 +166,14 @@ public class DAO_KhachHang {
         return true;
     }
 
+    public boolean update_Tien(KhachHang kh) {
+        dtb = sql.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("sodu", kh.getSodu());
+
+        if(dtb.update("KHACHHANG", values, "makh = ?", new String[] {String.valueOf(kh.getMakh())}) <0) {
+            return false;
+        }
+        return true;
+    }
 }

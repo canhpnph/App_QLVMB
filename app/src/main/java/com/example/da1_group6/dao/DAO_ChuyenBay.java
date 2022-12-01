@@ -30,7 +30,8 @@ public class DAO_ChuyenBay {
             cb.setDiemden(cursor.getString(2));
             cb.setGiave(cursor.getInt(3));
             cb.setTimebay(cursor.getString(4));
-            cb.setMamb(cursor.getString(5));
+            cb.setTongtime(cursor.getString(5));
+            cb.setMamb(cursor.getString(6));
             list.add(cb);
             cursor.moveToNext();
         }
@@ -50,7 +51,8 @@ public class DAO_ChuyenBay {
             cb.setDiemden(cursor.getString(2));
             cb.setGiave(cursor.getInt(3));
             cb.setTimebay(cursor.getString(4));
-            cb.setMamb(cursor.getString(5));
+            cb.setTongtime(cursor.getString(5));
+            cb.setMamb(cursor.getString(6));
             list.add(cb);
             cursor.moveToNext();
         }
@@ -70,7 +72,8 @@ public class DAO_ChuyenBay {
             cb.setDiemden(cursor.getString(2));
             cb.setGiave(cursor.getInt(3));
             cb.setTimebay(cursor.getString(4));
-            cb.setMamb(cursor.getString(5));
+            cb.setTongtime(cursor.getString(5));
+            cb.setMamb(cursor.getString(6));
             list.add(cb);
             cursor.moveToNext();
         }

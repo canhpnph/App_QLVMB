@@ -110,14 +110,15 @@ public class ForUserActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
         View viewheader = navigationView.getHeaderView(0);
-        tv_hello = viewheader.findViewById(R.id.tv_hello_user);
-        avatar = viewheader.findViewById(R.id.avatar_inheader_user);
-        sodu = viewheader.findViewById(R.id.sodu_in_header);
+        tv_hello = (TextView) viewheader.findViewById(R.id.tv_hello_user);
+        avatar = (CircleImageView) viewheader.findViewById(R.id.avatar_inheader_user);
+        sodu = (TextView) viewheader.findViewById(R.id.sodu_in_header);
 
         SharedPreferences preferences = getSharedPreferences("TB", Context.MODE_PRIVATE);
         email = preferences.getString("User", "");
 
-        reloadData();
+        reloadData(email);
+
         if(kh.getImage() == null) {
             avatar.setImageResource(R.drawable.img_avatar);
         }
@@ -140,10 +141,15 @@ public class ForUserActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        reloadData();
+        reloadData(email);
     }
 
-    public void reloadData() {
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+    }
+
+    public void reloadData(String email) {
         dao = new DAO_KhachHang(this);
         list = dao.getUser(email);
         kh = list.get(0);

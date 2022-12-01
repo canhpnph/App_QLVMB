@@ -14,42 +14,42 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.da1_group6.R;
-import com.example.da1_group6.adapter.Adapter_Recycler_qlvmb_admin;
-import com.example.da1_group6.dao.DAO_VeMB;
-import com.example.da1_group6.model.VeMB;
+import com.example.da1_group6.adapter.Adapter_Recycler_HDNT;
+import com.example.da1_group6.dao.DAO_HoaDonNapTien;
+import com.example.da1_group6.model.HoaDonNapTien;
 
 import java.util.ArrayList;
 
-
-public class Fragment_QLVMB_admin extends Fragment {
+public class Fragment_Confirm_Money_admin extends Fragment {
     RecyclerView recyclerView;
-    DAO_VeMB dao;
-    ArrayList<VeMB> list;
+    DAO_HoaDonNapTien dao;
+    ArrayList<HoaDonNapTien> list;
+    Adapter_Recycler_HDNT adapter;
     TextView tv_no_result;
-    ImageView img;
-    Adapter_Recycler_qlvmb_admin adapter;
+    ImageView ic_sad;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_qlvmb_admin, container, false);
+        return inflater.inflate(R.layout.fragment__confirm__money, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        recyclerView = view.findViewById(R.id.recyclerview_qlvmb_admin);
-        tv_no_result = view.findViewById(R.id.tv_no_result_qlvmb_admin);
-        img = view.findViewById(R.id.img_sad_qlvmb_admin);
+        recyclerView = view.findViewById(R.id.recyclerview_naptien);
+
+        tv_no_result = view.findViewById(R.id.tv_no_result_naptien);
+        ic_sad = view.findViewById(R.id.img_sad_naptien);
 
         reload();
 
         if(list.isEmpty()) {
             tv_no_result.setText("Hmm...Có vẻ như không có gì ở đây ");
-            img.setImageResource(R.drawable.img_sad);
+            ic_sad.setImageResource(R.drawable.img_sad);
         } else {
             tv_no_result.setText("");
-            img.setImageDrawable(null);
+            ic_sad.setImageDrawable(null);
         }
     }
 
@@ -59,10 +59,10 @@ public class Fragment_QLVMB_admin extends Fragment {
         reload();
     }
 
-    void reload() {
-        dao = new DAO_VeMB(getContext());
-        list = dao.getInfoUser_Staff();
-        adapter = new Adapter_Recycler_qlvmb_admin(list, getContext());
+    private void reload() {
+        dao = new DAO_HoaDonNapTien(getContext());
+        list = dao.getAllHoaDon();
+        adapter = new Adapter_Recycler_HDNT(list, getContext());
         recyclerView.setAdapter(adapter);
     }
 }

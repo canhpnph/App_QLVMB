@@ -3,13 +3,14 @@ package com.example.da1_group6.model;
 import android.graphics.Bitmap;
 
 public class KhachHang {
-    String makh,tenkh, ngaysinh, email, sdt, cccd;
+    int makh;
+    String tenkh, ngaysinh, email, sdt, cccd;
     int gioitinh, quoctich;
     String diachi, matkhau;
     Bitmap image;
     int sodu;
 
-    public KhachHang(String makh, String tenkh, String ngaysinh, String email, String sdt, String cccd, int gioitinh, String diachi, int quoctich, String matkhau, Bitmap image, int sodu) {
+    public KhachHang(int makh, String tenkh, String ngaysinh, String email, String sdt, String cccd, int gioitinh, String diachi, int quoctich, String matkhau, Bitmap image, int sodu) {
         this.makh = makh;
         this.tenkh = tenkh;
         this.ngaysinh = ngaysinh;
@@ -32,11 +33,11 @@ public class KhachHang {
     public KhachHang() {
     }
 
-    public String getMakh() {
+    public int getMakh() {
         return makh;
     }
 
-    public void setMakh(String makh) {
+    public void setMakh(int makh) {
         this.makh = makh;
     }
 

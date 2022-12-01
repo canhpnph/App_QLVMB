@@ -43,7 +43,7 @@ public class ForAdminActivity extends AppCompatActivity {
 
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_qlyvemb_admin, R.id.nav_hangmb_admin, R.id.nav_qlynv_admin, R.id.nav_doanhthu_admin, R.id.nav_topmb_admin, R.id.nav_doimk_admin)
+                R.id.nav_qlyvemb_admin, R.id.nav_hangmb_admin, R.id.nav_qlynv_admin, R.id.nav_confirm_money_admin , R.id.nav_doanhthu_admin, R.id.nav_doimk_admin)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_for_admin);

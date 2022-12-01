@@ -23,6 +23,11 @@ public class NhanVien {
     public NhanVien() {
     }
 
+    public NhanVien(String manv, String tennv) {
+        this.manv = manv;
+        this.tennv = tennv;
+    }
+
     public String getManv() {
         return manv;
     }

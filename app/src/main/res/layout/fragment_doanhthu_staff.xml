@@ -2,19 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="10dp">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/img_date_from_doanhthu_staff"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:src="@drawable/ic_date" />
 
         <TextView
@@ -37,8 +37,8 @@
 
         <ImageView
             android:id="@+id/img_date_to_doanhthu_staff"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_marginLeft="15dp"
             android:src="@drawable/ic_date" />
 
@@ -55,6 +55,22 @@
     </LinearLayout>
 
 
+    <LinearLayout
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:id="@+id/ic_search_doanhthu_staff"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_baseline_search_24" />
+    </LinearLayout>
+
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -65,7 +81,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="20dp">
+        android:padding="10dp">
 
         <ImageView
             android:layout_width="40dp"
@@ -75,7 +91,7 @@
             android:src="@drawable/img_item1_history" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:orientation="vertical">
@@ -83,17 +99,19 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tổng Doanh Thu"
+                android:text="Tổng doanh thu"
                 android:textSize="17dp"
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tv_tongdoanhthu_staff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="1.500.000 VND"
+                android:text="... VND"
                 android:textSize="13dp"
                 android:textStyle="bold" />
+
         </LinearLayout>
 
     </LinearLayout>
@@ -107,16 +125,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="20dp">
+        android:padding="10dp">
 
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginLeft="10dp"
+            android:layout_gravity="center"
             android:src="@drawable/img_ve" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:orientation="vertical">
@@ -124,17 +143,19 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tổng Vé đã bán"
+                android:text="Tổng vé đã bán"
                 android:textSize="17dp"
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tv_tongveban_staff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="2 vé đã được bán ra"
+                android:text="... vé được bán ra"
                 android:textSize="13dp"
                 android:textStyle="bold" />
+
         </LinearLayout>
 
     </LinearLayout>
