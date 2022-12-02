@@ -7,8 +7,8 @@
 
     <EditText
         android:id="@+id/edt_email"
-        android:layout_width="360dp"
-        android:layout_height="wrap_content"
+        android:layout_width="320dp"
+        android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_marginTop="250dp"
         android:background="@drawable/custom_edittext"
@@ -30,8 +30,8 @@
 
             <EditText
                 android:id="@+id/edt_pass"
-                android:layout_width="360dp"
-                android:layout_height="wrap_content"
+                android:layout_width="320dp"
+                android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:background="@drawable/custom_edittext"
                 android:drawableStart="@drawable/custom_icon_pass"
@@ -54,7 +54,7 @@
 
     <LinearLayout
         android:layout_marginTop="5dp"
-        android:paddingStart="50dp"
+        android:paddingStart="60dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -73,11 +73,12 @@
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:background="@drawable/button"
         android:text="Đăng Nhập"
+        android:textAllCaps="false"
         android:textColor="#FFFFFF"/>
 
     <LinearLayout

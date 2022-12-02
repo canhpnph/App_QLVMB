@@ -28,6 +28,11 @@ public class Adapter_Recycler_qlvmb_staff extends RecyclerView.Adapter<Adapter_R
         this.context = context;
     }
 
+    public void setListSearch(ArrayList<VeMB> getListSearch) {
+        this.list = getListSearch;
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

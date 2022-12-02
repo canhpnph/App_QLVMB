@@ -156,7 +156,14 @@ public class ForUserActivity extends AppCompatActivity {
 
         tv_hello.setText("Xin chào, \n" + kh.getTenkh());
         avatar.setImageBitmap(kh.getImage());
-        sodu.setText("Số dư: " + kh.getSodu() + " vnđ");
+
+        String sodustr = String.valueOf(kh.getSodu());
+        StringBuilder str = new StringBuilder(sodustr);
+        for (int i = str.length(); i > 0; i -= 3) {
+            str.insert(i, " ");
+        }
+
+        sodu.setText("Số dư: " + str.toString() + " vnđ");
     }
 
 }

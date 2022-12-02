@@ -2,6 +2,7 @@ package com.example.da1_group6;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -89,11 +90,14 @@ public class Activity_Register extends AppCompatActivity {
                             return;
                         } else {
                             KhachHang kh = new KhachHang();
-//                            dao.add(new KhachHang(kh.getMakh(), kh.getTenkh(), kh.getNgaysinh(), edt_email.getText().toString().trim(),
-//                                    kh.getSdt(), kh.getCccd(), kh.getGioitinh(), kh.getDiachi(), kh.getQuoctich() ,edt_pass.getText().toString().trim(), kh.getImage()  , kh.getSodu()));
                             dao.add(new KhachHang(edt_email.getText().toString().trim(), edt_pass.getText().toString().trim()));
                             Toast.makeText(Activity_Register.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
-                            onBackPressed();
+
+                            Intent intent = new Intent(Activity_Register.this, Activity_Login.class);
+                            intent.putExtra("email", edt_email.getText().toString().trim());
+                            intent.putExtra("pass", edt_pass.getText().toString().trim());
+                            startActivity(intent);
+                            overridePendingTransition(R.anim.slide_in_dialog, R.anim.slide_out_dialog);
                         }
                     }
                 }

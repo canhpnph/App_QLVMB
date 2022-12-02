@@ -1,6 +1,7 @@
 package com.example.da1_group6.ui_user;
 
 import android.Manifest;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -29,9 +30,11 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.da1_group6.R;
@@ -43,6 +46,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -55,6 +59,7 @@ public class Fragment_Info_user extends Fragment {
     CoordinatorLayout btn_Camera;
     EditText edt_tenkh, edt_ngaysinh, edt_email, edt_sdt, edt_cccd, edt_diachi;
     CircleImageView avatar;
+    TextView tvdate;
     DAO_KhachHang dao;
     KhachHang kh;
     ArrayList<KhachHang> list;
@@ -86,6 +91,7 @@ public class Fragment_Info_user extends Fragment {
         edt_email = view.findViewById(R.id.edt_email_user);
         edt_sdt = view.findViewById(R.id.edt_sdt_user);
         edt_cccd = view.findViewById(R.id.edt_cccd_user);
+        tvdate = view.findViewById(R.id.btn_dateofbirth);
 
         avatar = view.findViewById(R.id.avatar_user);
         spin_quoctich = view.findViewById(R.id.spin_quoctich_user);
@@ -108,7 +114,14 @@ public class Fragment_Info_user extends Fragment {
         spin_quoctich.setAdapter(adapter2);
 
         edt_tenkh.setText(kh.getTenkh());
+
         edt_ngaysinh.setText(kh.getNgaysinh());
+        tvdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                date();
+            }
+        });
         edt_cccd.setText(kh.getCccd());
         edt_email.setText(kh.getEmail());
         edt_sdt.setText(kh.getSdt());
@@ -331,5 +344,28 @@ public class Fragment_Info_user extends Fragment {
         pattern = Pattern.compile(EMAIL_PATTERN);
         matcher = pattern.matcher(numberphone);
         return matcher.matches();
+    }
+
+    public void date() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+
+        DatePickerDialog dialog = new DatePickerDialog(getContext(),
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                        int nam = i;
+                        int thang = i1;
+                        int ngay = i2;
+                        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+                        calendar.set(nam, thang, ngay);
+                        edt_ngaysinh.setText(format.format(calendar.getTime()));
+                    }
+                },
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DATE)
+        );
+        dialog.show();
     }
 }

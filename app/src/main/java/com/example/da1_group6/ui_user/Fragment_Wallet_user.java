@@ -81,7 +81,13 @@ public class Fragment_Wallet_user extends Fragment {
             img.setImageDrawable(null);
         }
 
-        tvsodu.setText(String.valueOf(kh.getSodu()));
+        String sodustr = String.valueOf(kh.getSodu());
+        StringBuilder str = new StringBuilder(sodustr);
+        for (int i = str.length(); i > 0; i -= 3) {
+            str.insert(i, " ");
+        }
+
+        tvsodu.setText(str);
 
         btn_naptien.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,14 +112,26 @@ public class Fragment_Wallet_user extends Fragment {
                     Toast.makeText(getContext(), "Không được để trống", Toast.LENGTH_SHORT).show();
                     return;
                 } else {
-                    HoaDonNapTien hd = new HoaDonNapTien();
-                    DAO_HoaDonNapTien dao = new DAO_HoaDonNapTien(getContext());
+                    if(Integer.parseInt(edt_sotiennap.getText().toString()) > 100000000) {
+                        Toast.makeText(getContext(), "Bạn chỉ được nạp tối đa 100 triệu / 1 lần. Vui lòng thử lại !!", Toast.LENGTH_SHORT).show();
+                        return;
+                    } else {
+                        HoaDonNapTien hd = new HoaDonNapTien();
+                        DAO_HoaDonNapTien dao = new DAO_HoaDonNapTien(getContext());
 
-                    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-                    String time = format.format(Calendar.getInstance().getTime());
+                        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                        String time = format.format(Calendar.getInstance().getTime());
 
-                    dao.addHD(new HoaDonNapTien(hd.getId(), kh.getMakh(), Integer.parseInt(edt_sotiennap.getText().toString()), time, 0));
-                    Toast.makeText(getContext(), "Bạn vừa gửi yêu cầu nạp tiền với số tiền là " + edt_sotiennap.getText().toString() + " vnd. Vui lòng chờ admin xác nhận!!!", Toast.LENGTH_SHORT).show();
+                        String sotiennap_str = edt_sotiennap.getText().toString().trim();
+                        StringBuilder str_sotiennap = new StringBuilder(sotiennap_str);
+                        for (int i = str_sotiennap.length(); i > 0; i -= 3) {
+                            str_sotiennap.insert(i, " ");
+                        }
+
+                        dao.addHD(new HoaDonNapTien(hd.getId(), kh.getMakh(), Integer.parseInt(edt_sotiennap.getText().toString()), time, 0));
+                        Toast.makeText(getContext(), "Bạn vừa gửi yêu cầu nạp tiền với số tiền là " + str_sotiennap + " vnd. Vui lòng chờ admin xác nhận!!!", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
             }
         });

@@ -39,6 +39,7 @@ public class Activity_Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         btnLogin = findViewById(R.id.btnLogin);
         edt_email = findViewById(R.id.edt_email);
         edt_pass = findViewById(R.id.edt_pass);
@@ -52,6 +53,12 @@ public class Activity_Login extends AppCompatActivity {
         overridePendingTransition(R.anim.animation1, R.anim.animation2);
 
         edt_pass.setTransformationMethod(PasswordTransformationMethod.getInstance());
+
+        Intent intent = getIntent();
+        String email = intent.getStringExtra("email");
+        String pass = intent.getStringExtra("pass");
+        edt_pass.setText(pass);
+        edt_email.setText(email);
 
         list = readAcc();
         if (list.size() > 0) {
@@ -124,7 +131,8 @@ public class Activity_Login extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("TB", MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         if (check == false) {
-            editor.clear();
+            editor.putString("User", user);
+            editor.putString("Pass", pass);
         } else {
             editor.putString("User", user);
             editor.putString("Pass", pass);

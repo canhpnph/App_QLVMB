@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,6 +32,7 @@ public class Fragment_XNVMB_staff extends Fragment {
     String user;
     TextView tv_no_result;
     ImageView img;
+    SearchView searchView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,6 +47,7 @@ public class Fragment_XNVMB_staff extends Fragment {
 
         tv_no_result = view.findViewById(R.id.tv_no_result_cxn_staff);
         img = view.findViewById(R.id.img_sad_cxn_staff);
+        searchView = view.findViewById(R.id.search_xnvmb_staff);
 
         SharedPreferences preferences = getActivity().getSharedPreferences("TB", Context.MODE_PRIVATE);
         user = preferences.getString("User", "");
@@ -55,6 +58,47 @@ public class Fragment_XNVMB_staff extends Fragment {
             tv_no_result.setText("Hmm...Có vẻ như không có gì ở đây ");
             img.setImageResource(R.drawable.img_sad);
         } else {
+            tv_no_result.setText("");
+            img.setImageDrawable(null);
+        }
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                findItem(newText);
+                return false;
+            }
+        });
+    }
+
+    private void findItem(String newText) {
+        ArrayList<VeMB> listVMB = new ArrayList<>();
+        for (VeMB vmb : list) {
+            if(vmb.getMacb().toLowerCase().contains(newText.toLowerCase())) {
+                listVMB.add(vmb);
+            } else if(vmb.getTenkh().toLowerCase().contains(newText.toLowerCase())) {
+                listVMB.add(vmb);
+            } else if(vmb.getDiemdi().toLowerCase().contains(newText.toLowerCase())) {
+                listVMB.add(vmb);
+            } else if(vmb.getDiemden().toLowerCase().contains(newText.toLowerCase())) {
+                listVMB.add(vmb);
+            } else if(vmb.getTimebay().toLowerCase().contains(newText.toLowerCase())) {
+                listVMB.add(vmb);
+            }
+        }
+
+        if(listVMB.isEmpty()) {
+            listVMB.clear();
+            adapter.setListSearch(listVMB);
+            tv_no_result.setText("Hmm...Không có dữ liệu phù hợp ");
+            img.setImageResource(R.drawable.img_sad);
+        } else {
+            adapter.setListSearch(listVMB);
             tv_no_result.setText("");
             img.setImageDrawable(null);
         }

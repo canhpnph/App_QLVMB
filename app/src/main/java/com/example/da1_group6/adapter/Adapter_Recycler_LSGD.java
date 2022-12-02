@@ -37,10 +37,17 @@ public class Adapter_Recycler_LSGD extends RecyclerView.Adapter<Adapter_Recycler
         holder.tvtime.setText(ls.getTime());
 
         String title = ls.getTitle();
+
+        String sotienstr = String.valueOf(ls.getSotien());
+        StringBuilder str = new StringBuilder(sotienstr);
+        for (int i = str.length(); i > 0; i -= 3) {
+            str.insert(i, " ");
+        }
+
         if(title.equalsIgnoreCase("Mua vé máy bay")) {
-            holder.tvsotien.setText( "- " + ls.getSotien() + " Đ");
+            holder.tvsotien.setText( "- " + str + " Đ");
         } else {
-            holder.tvsotien.setText( "+ " + ls.getSotien() + " Đ");
+            holder.tvsotien.setText( "+ " + str + " Đ");
         }
     }
 

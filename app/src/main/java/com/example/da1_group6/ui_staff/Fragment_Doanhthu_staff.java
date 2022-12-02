@@ -73,10 +73,15 @@ public class Fragment_Doanhthu_staff extends Fragment {
                 String date_from = tv_datefrom.getText().toString();
                 String date_to = tv_dateto.getText().toString();
 
-                int doanhthu_theo_staff = dao.get_tongdoanhthu_staff(manv, date_from, date_to);
                 int slveban_theo_staff = dao.get_tongveban_staff(manv, date_from, date_to);
 
-                tvtongdoanhthu.setText(doanhthu_theo_staff + " vnđ");
+                String doanhthustr_staff = String.valueOf(dao.get_tongdoanhthu_staff(manv, date_from, date_to));
+                StringBuilder str_dt_staff = new StringBuilder(doanhthustr_staff);
+                for (int i = str_dt_staff.length(); i > 0; i -= 3) {
+                    str_dt_staff.insert(i, " ");
+                }
+
+                tvtongdoanhthu.setText(str_dt_staff + " vnđ");
                 tvtongveban.setText(slveban_theo_staff + " vé được bán ra");
             }
         });

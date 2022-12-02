@@ -44,7 +44,14 @@ public class Adapter_Recycler_HDNT extends RecyclerView.Adapter<Adapter_Recycler
 
         holder.tvmakh.setText("Mã KH: " + String.valueOf(hd.getMakh()));
         holder.tvtenkh.setText(hd.getHotenkh());
-        holder.tvsotiennap.setText(String.valueOf(hd.getSotiennap()) + " Đ");
+
+        String sotiennapstr = String.valueOf(hd.getSotiennap());
+        StringBuilder str = new StringBuilder(sotiennapstr);
+        for (int i = str.length(); i > 0; i -= 3) {
+            str.insert(i, " ");
+        }
+
+        holder.tvsotiennap.setText(str + " Đ");
         holder.tvtime_naptien.setText("Thời gian nạp tiền: " + hd.getTimenap());
 
         int status = hd.getTrangthai();

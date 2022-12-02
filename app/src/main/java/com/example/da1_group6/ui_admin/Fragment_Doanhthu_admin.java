@@ -82,18 +82,52 @@ public class Fragment_Doanhthu_admin extends Fragment {
                 DAO_VeMB dao = new DAO_VeMB(getContext());
                 String date_from = tv_datefrom.getText().toString();
                 String date_to = tv_dateto.getText().toString();
-                int doanhthu_theo_staff = dao.get_tongdoanhthu_staff(manv, date_from, date_to);
-                int slveban_theo_staff = dao.get_tongveban_staff(manv, date_from, date_to);
 
-                int doanhthu = dao.get_tongdoanhthu(date_from, date_to);
+                String doanhthustr_staff = String.valueOf(dao.get_tongdoanhthu_staff(manv, date_from, date_to));
+                StringBuilder str_dt_staff = new StringBuilder(doanhthustr_staff);
+                for (int i = str_dt_staff.length(); i > 0; i -= 3) {
+                    str_dt_staff.insert(i, " ");
+                }
+
+                String slvestr_staff = String.valueOf(dao.get_tongveban_staff(manv, date_from, date_to));
+                StringBuilder str_slve_staff = new StringBuilder(slvestr_staff);
+                for (int i = str_slve_staff.length(); i > 0; i -= 3) {
+                    str_slve_staff.insert(i, " ");
+                }
+
+                String doanhthustr_all = String.valueOf(dao.get_tongdoanhthu(date_from, date_to));
+                StringBuilder str_dt_all = new StringBuilder(doanhthustr_all);
+                for (int i = str_dt_all.length(); i > 0; i -= 3) {
+                    str_dt_all.insert(i, " ");
+                }
+
+                String doanhthustr_staff1 = String.valueOf(dao.get_tongdoanhthu_staff("NV01", date_from, date_to));
+                StringBuilder str_dt_staff1 = new StringBuilder(doanhthustr_staff1);
+                for (int i = str_dt_staff1.length(); i > 0; i -= 3) {
+                    str_dt_staff1.insert(i, " ");
+                }
+
+                String doanhthustr_staff2 = String.valueOf(dao.get_tongdoanhthu_staff("NV02", date_from, date_to));
+                StringBuilder str_dt_staff2 = new StringBuilder(doanhthustr_staff2);
+                for (int i = str_dt_staff2.length(); i > 0; i -= 3) {
+                    str_dt_staff2.insert(i, " ");
+                }
+
+                String doanhthustr_staff3 = String.valueOf(dao.get_tongdoanhthu_staff("NV03", date_from, date_to));
+                StringBuilder str_dt_staff3 = new StringBuilder(doanhthustr_staff3);
+                for (int i = str_dt_staff3.length(); i > 0; i -= 3) {
+                    str_dt_staff3.insert(i, " ");
+                }
+
+
                 int soluongve = dao.get_tongveban(date_from, date_to);
 
                 if (manv.equalsIgnoreCase("Tất cả")) {
-                    tvtongdoanhthu.setText(doanhthu + " vnđ");
+                    tvtongdoanhthu.setText(str_dt_all + " vnđ");
                     tvtd1.setText("Trong đó: ");
-                    tvall3staff1.setText("- NV01: " + dao.get_tongdoanhthu_staff("NV01", date_from, date_to) + " vnđ" + "\n" +
-                            "- NV02: " + dao.get_tongdoanhthu_staff("NV02", date_from, date_to) + " vnđ" + "\n"
-                            + "- NV03: " + dao.get_tongdoanhthu_staff("NV03", date_from, date_to) + " vnđ" + "\n");
+                    tvall3staff1.setText("- NV01: " + str_dt_staff1 + " vnđ" + "\n" +
+                            "- NV02: " + str_dt_staff2 + " vnđ" + "\n"
+                            + "- NV03: " + str_dt_staff3 + " vnđ" + "\n");
 
                     tvtongveban.setText(soluongve + " vé được bán ra");
                     tvtd2.setText("Trong đó: ");
@@ -101,8 +135,8 @@ public class Fragment_Doanhthu_admin extends Fragment {
                             "- NV02: " + dao.get_tongveban_staff("NV02", date_from, date_to) + " vé" + "\n"
                             + "- NV03: " + dao.get_tongveban_staff("NV03", date_from, date_to) + " vé" + "\n");
                 } else {
-                    tvtongdoanhthu.setText(doanhthu_theo_staff + " vnđ");
-                    tvtongveban.setText(slveban_theo_staff + " vé được bán ra");
+                    tvtongdoanhthu.setText(str_dt_staff + " vnđ");
+                    tvtongveban.setText( str_slve_staff + " vé được bán ra");
                     tvtd1.setText("");
                     tvtd2.setText("");
                     tvall3staff1.setText("");

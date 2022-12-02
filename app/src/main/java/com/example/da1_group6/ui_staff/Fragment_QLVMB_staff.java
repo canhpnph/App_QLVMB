@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,7 +32,6 @@ import java.util.Calendar;
 
 
 public class Fragment_QLVMB_staff extends Fragment {
-    ImageView img_date;
     TextView tv_date;
     RecyclerView recyclerView;
     DAO_VeMB dao;
@@ -40,6 +40,7 @@ public class Fragment_QLVMB_staff extends Fragment {
     String user;
     TextView tv_no_result;
     ImageView img;
+    SearchView searchView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,9 +51,8 @@ public class Fragment_QLVMB_staff extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        img_date = view.findViewById(R.id.img_date_qlvmb_staff);
-        tv_date = view.findViewById(R.id.tv_date_qlvmb_staff);
         recyclerView = view.findViewById(R.id.recyclerview_qlvmb_staff);
+        searchView = view.findViewById(R.id.search_qlvmb_staff);
 
         tv_no_result = view.findViewById(R.id.tv_no_result_dxn_staff);
         img = view.findViewById(R.id.img_sad_dxn_staff);
@@ -69,35 +69,47 @@ public class Fragment_QLVMB_staff extends Fragment {
             tv_no_result.setText("");
             img.setImageDrawable(null);
         }
-        img_date.setOnClickListener(new View.OnClickListener() {
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public void onClick(View v) {
-                date_from();
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                findItem(newText);
+                return false;
             }
         });
     }
 
-    public void date_from() {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(System.currentTimeMillis());
+    private void findItem(String newText) {
+        ArrayList<VeMB> listVMB = new ArrayList<>();
+        for (VeMB vmb : list) {
+            if(vmb.getMacb().toLowerCase().contains(newText.toLowerCase())) {
+                listVMB.add(vmb);
+            } else if(vmb.getTenkh().toLowerCase().contains(newText.toLowerCase())) {
+                listVMB.add(vmb);
+            } else if(vmb.getDiemdi().toLowerCase().contains(newText.toLowerCase())) {
+                listVMB.add(vmb);
+            } else if(vmb.getDiemden().toLowerCase().contains(newText.toLowerCase())) {
+                listVMB.add(vmb);
+            } else if(vmb.getTimebay().toLowerCase().contains(newText.toLowerCase())) {
+                listVMB.add(vmb);
+            }
+        }
 
-        DatePickerDialog dialog = new DatePickerDialog(getContext(),
-                new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                        int nam = i;
-                        int thang = i1;
-                        int ngay = i2;
-                        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-                        calendar.set(nam,thang,ngay);
-                        tv_date.setText(format.format(calendar.getTime()));
-                    }
-                },
-                calendar.get(Calendar.YEAR),
-                calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DATE)
-        );
-        dialog.show();
+        if(listVMB.isEmpty()) {
+            listVMB.clear();
+            adapter.setListSearch(listVMB);
+            tv_no_result.setText("Hmm...Không có dữ liệu phù hợp ");
+            img.setImageResource(R.drawable.img_sad);
+        } else {
+            adapter.setListSearch(listVMB);
+            tv_no_result.setText("");
+            img.setImageDrawable(null);
+        }
     }
 
     @Override

@@ -66,7 +66,14 @@ public class Adapter_Recycler_BookVe_user extends RecyclerView.Adapter<Adapter_R
         holder.tvfrom.setText("From: " + cb.getDiemdi());
         holder.tvto.setText("To: " + cb.getDiemden());
         holder.tvtimebay.setText(cb.getTimebay());
-        holder.tvgiave.setText(String.valueOf(cb.getGiave()) + " Đ");
+
+        String giavestr = String.valueOf(cb.getGiave());
+        StringBuilder str_giave = new StringBuilder(giavestr);
+        for (int i = str_giave.length(); i > 0; i -= 3) {
+            str_giave.insert(i, " ");
+        }
+
+        holder.tvgiave.setText(str_giave + " Đ");
 
 
         SharedPreferences preferences = context.getSharedPreferences("TB", Context.MODE_PRIVATE);
@@ -91,6 +98,12 @@ public class Adapter_Recycler_BookVe_user extends RecyclerView.Adapter<Adapter_R
                 }
                 giave = cb.getGiave();
 
+                String giave_string = String.valueOf(giave);
+                StringBuilder str_giave1 = new StringBuilder(giave_string);
+                for (int i = str_giave1.length(); i > 0; i -= 3) {
+                    str_giave1.insert(i, " ");
+                }
+
                 Dialog dialog = new Dialog(context);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.dialog_confirm_bookve);
@@ -100,7 +113,7 @@ public class Adapter_Recycler_BookVe_user extends RecyclerView.Adapter<Adapter_R
                 TextView btn_cancel = dialog.findViewById(R.id.btnCancel_confirm_bookve);
                 TextView btn_confirm = dialog.findViewById(R.id.btn_confirm_bookve);
 
-                tv_confirm.setText("Xác nhận thanh toán " + giave + " Đ?");
+                tv_confirm.setText("Xác nhận thanh toán " + str_giave1 + " Đ?");
                 btn_cancel.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

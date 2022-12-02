@@ -6,8 +6,17 @@
     android:orientation="vertical"
     android:layout_height="match_parent">
 
+    <androidx.appcompat.widget.SearchView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/search_qlvmb_admin"
+        app:queryHint="Search everything"
+        android:background="@drawable/custom_edittext"
+        app:iconifiedByDefault="false"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/recyclerview_qlvmb_admin"

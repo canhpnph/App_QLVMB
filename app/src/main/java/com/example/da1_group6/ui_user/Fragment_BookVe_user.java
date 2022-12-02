@@ -34,7 +34,7 @@ import java.util.HashMap;
 
 public class Fragment_BookVe_user extends Fragment {
     Spinner spin_from, spin_to, spin_hangmb;
-    Button btn_search_chuyenbay;
+    ImageView btn_search_chuyenbay;
     ImageView choose_day;
     TextView tv_date, tv_no_result;
     RecyclerView recyclerView;
