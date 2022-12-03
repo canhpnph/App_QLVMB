@@ -3,11 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/img1"
     android:padding="10dp">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:layout_gravity="center"
         android:orientation="horizontal">
 
@@ -78,11 +80,6 @@
     </LinearLayout>
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="10dp"
-        android:background="#FFA5A5A5" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -107,6 +104,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Tổng doanh thu"
+                android:textColor="@color/black"
                 android:textSize="17dp"
                 android:textStyle="bold" />
 
@@ -115,6 +113,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:textColor="@color/black"
                 android:text="... VND"
                 android:textSize="13dp"
                 android:textStyle="bold" />
@@ -130,24 +129,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="13dp"
-                    android:textStyle="bold" />
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:id="@+id/tv_all3staff_1"
                     android:layout_width="match_parent"
                     android:paddingStart="10dp"
                     android:lineHeight="20dp"
+                    android:textColor="@color/black"
                     android:layout_height="wrap_content"
                     android:textSize="13dp" />
             </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#6E6E6E" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -172,6 +167,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Tổng vé đã bán"
+                android:textColor="@color/black"
                 android:textSize="17dp"
                 android:textStyle="bold" />
 
@@ -180,6 +176,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:textColor="@color/black"
                 android:text="... vé được bán ra"
                 android:textSize="13dp"
                 android:textStyle="bold" />
@@ -195,13 +192,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="13dp"
-                    android:textStyle="bold" />
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:id="@+id/tv_all3staff_2"
                     android:layout_width="match_parent"
                     android:paddingStart="10dp"
                     android:lineHeight="20dp"
+                    android:textColor="@color/black"
                     android:layout_height="wrap_content"
                     android:textSize="13dp" />
             </LinearLayout>
@@ -209,8 +207,4 @@
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#6A6A6A" />
 </LinearLayout>

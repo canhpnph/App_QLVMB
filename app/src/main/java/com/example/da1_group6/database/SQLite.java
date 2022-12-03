@@ -15,7 +15,7 @@ public class SQLite extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String tb_hmb = "create table HANGMAYBAY (mamb text primary key, tenmb text)";
-        String tb_cb = "create table CHUYENBAY (macb text primary key, diemdi text, diemden text, giave integer, timebay text, tongtime text ,mamb text, foreign key (mamb) references HANGMAYBAY(mamb))";
+        String tb_cb = "create table CHUYENBAY (macb text primary key, diemdi text, diemden text, giave integer, timebay text, tongtime text , soluongve int, mamb text, foreign key (mamb) references HANGMAYBAY(mamb))";
         String tb_nv = "create table NHANVIEN (manv text primary key, tennv text, email text, sdt text, gioitinh integer, quoctich integer, chucvu text, matkhau text, image blob)";
         String tb_kh = "create table KHACHHANG (makh integer primary key autoincrement, tenkh text, ngaysinh text, email text, sdt text, cccd text, gioitinh integer, diachi text, quoctich integer, matkhau text, image blob, sodu integer)";
         String tb_vmb = "create table VEMAYBAY (mavmb integer primary key autoincrement, macb text, manv text, makh text, timedatve text, trangthai integer, foreign key (macb) references CHUYENBAY(macb)," +
@@ -35,18 +35,19 @@ public class SQLite extends SQLiteOpenHelper {
 
         String itemhmb = "insert into HANGMAYBAY values ('VNA', 'Vietnam Airlines'), ('VJA', 'VietJet Airs'), ('BBA', 'Bamboo Airways')";
         String itemnv = "insert into NHANVIEN values ('NV01', 'Trần Kim Ngân', '','', '', '', 'NVQL hãng máy bay Vietnam Airlines', 'a',''), ('NV02', 'Nguyễn Đức Duy', '','', '', '', 'NVQL hãng máy bay VietJet Airs', 'a',''), ('NV03', 'Bùi Minh Hiếu', '','', '', '', 'NVQL hãng máy bay Bamboo Airways', 'a','')";
-        String itemcb = "insert into CHUYENBAY values ('VNA1092','Hà Nội', 'Đà Nẵng', 2700000, '12:20 30/11/2022', '1h20m', 'VNA')," +
-                "('VNA5392','Hà Nội', 'TP. HCM', 6650000, '08:00 28/11/2022', '2h30m', 'VNA')," +
-                "('VNA1044','Đà Nẵng', 'Phú Quốc', 3890000, '19:30 03/12/2022', '2h00m', 'VNA')," +
-                "('VNA2037','Đà Nẵng', 'Hà Nội', 2800000, '15:30 29/11/2022','1h15m', 'VNA')," +
-                "('VJA5473','Hà Nội', 'Đà Nẵng', 2400000, '10:00 30/11/2022','1h25m', 'VJA')," +
-                "('VJA0039','Hà Nội', 'TP. HCM', 5750000, '05:40 01/12/2022','2h25m', 'VJA')," +
-                "('VJA9982','Hải Phòng', 'Phú Quốc', 7600000, '19:15 05/11/2022','2h50m', 'VJA')," +
-                "('VJA3800','Đà Nẵng', 'Hà Nội', 2800000, '21:45 29/11/2022','1h20m', 'VJA')," +
-                "('BBA2433','Hà Nội', 'Đà Nẵng', 3100000, '15:00 29/11/2022','1h10m' ,'BBA')," +
-                "('BBA0623','Đà Nẵng', 'Hà Nội', 3300000, '16:45 30/11/2022','1h15m' ,'BBA')," +
-                "('BBA8112','Hà Nội', 'TP. HCM', 6450000, '20:20 30/11/2022', '2h25m','BBA')," +
-                "('BBA0001','TP. HCM', 'Hà Nội', 6700000, '09:40 01/12/2022','2h30m' ,'BBA')";
+        String itemcb = "insert into CHUYENBAY values ('VNA1092','Hà Nội', 'Đà Nẵng', 2700000, '12:20 30/11/2022', '1h20m','5', 'VNA')," +
+                "('VNA5392','Hà Nội', 'TP. HCM', 6650000, '08:00 28/11/2022', '2h30m','25', 'VNA')," +
+                "('VNA1044','Đà Nẵng', 'Phú Quốc', 3890000, '19:30 03/12/2022', '2h00m','59', 'VNA')," +
+                "('VNA2037','Đà Nẵng', 'Hà Nội', 2800000, '15:30 29/11/2022','1h15m', '12','VNA')," +
+                "('VJA5473','Hà Nội', 'Đà Nẵng', 2400000, '10:00 30/11/2022','1h25m','45', 'VJA')," +
+                "('VJA0039','Hà Nội', 'TP. HCM', 5750000, '05:40 01/12/2022','2h25m', '90', 'VJA')," +
+                "('VJA9982','Hải Phòng', 'Phú Quốc', 7600000, '19:15 05/11/2022','2h50m', '14','VJA')," +
+                "('VJA3800','Đà Nẵng', 'Hà Nội', 2800000, '21:45 29/11/2022','1h20m','40', 'VJA')," +
+                "('BBA2433','Hà Nội', 'Đà Nẵng', 3100000, '15:00 29/11/2022','1h10m' ,'19','BBA')," +
+                "('BBA0623','Đà Nẵng', 'Hà Nội', 3300000, '16:45 30/11/2022','1h15m' ,'22','BBA')," +
+                "('BBA8112','Hà Nội', 'TP. HCM', 6450000, '20:20 30/11/2022', '2h25m','44','BBA')," +
+                "('BBA0001','TP. HCM', 'Hà Nội', 6700000, '09:40 01/12/2022','2h30m' ,'20','BBA')";
+
         String itemadmin = "insert into ADMIN values ('admin', 'a')";
 
         db.execSQL(itemhmb);

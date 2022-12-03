@@ -42,6 +42,7 @@ public class Fragment_BookVe_user extends Fragment {
     ArrayList<ChuyenBay> list_cb;
     Adapter_Recycler_BookVe_user adapter;
     ArrayAdapter adapter_from;
+    String diemden, diemdi, ngaybay, mamb;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -79,10 +80,9 @@ public class Fragment_BookVe_user extends Fragment {
         btn_search_chuyenbay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String diemden = spin_from.getSelectedItem().toString();
-                String diemdi = spin_to.getSelectedItem().toString();
-                String ngaybay = tv_date.getText().toString().trim();
-                String mamb = "";
+                diemden = spin_from.getSelectedItem().toString();
+                diemdi = spin_to.getSelectedItem().toString();
+                ngaybay = tv_date.getText().toString().trim();
 
                 if(spin_hangmb.getSelectedItemPosition() == 0) {
                     dao = new DAO_ChuyenBay(getContext());
@@ -93,10 +93,7 @@ public class Fragment_BookVe_user extends Fragment {
                     HashMap<String, Object> hashMap = (HashMap<String, Object>) spin_hangmb.getSelectedItem();
                     mamb = (String) hashMap.get("mamb");
 
-                    dao = new DAO_ChuyenBay(getContext());
-                    list_cb = dao.getChuyenBay(diemden, diemdi, mamb, ngaybay);
-                    adapter = new Adapter_Recycler_BookVe_user(list_cb, getContext());
-                    recyclerView.setAdapter(adapter);
+                    reload();
                 }
 
                 if(list_cb.isEmpty()) {
@@ -147,5 +144,12 @@ public class Fragment_BookVe_user extends Fragment {
         SimpleAdapter simpleAdapter = new SimpleAdapter(getContext(), listHM,
                 android.R.layout.simple_list_item_1, new String[] {"tenmb"}, new int[]{android.R.id.text1});
         spin_hangmb.setAdapter(simpleAdapter);
+    }
+
+    private void reload() {
+        dao = new DAO_ChuyenBay(getContext());
+        list_cb = dao.getChuyenBay(diemden, diemdi, mamb, ngaybay);
+        adapter = new Adapter_Recycler_BookVe_user(list_cb, getContext());
+        recyclerView.setAdapter(adapter);
     }
 }

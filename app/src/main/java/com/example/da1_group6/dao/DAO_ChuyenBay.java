@@ -1,5 +1,6 @@
 package com.example.da1_group6.dao;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -31,7 +32,30 @@ public class DAO_ChuyenBay {
             cb.setGiave(cursor.getInt(3));
             cb.setTimebay(cursor.getString(4));
             cb.setTongtime(cursor.getString(5));
-            cb.setMamb(cursor.getString(6));
+            cb.setSoluongve(cursor.getInt(6));
+            cb.setMamb(cursor.getString(7));
+            list.add(cb);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return list;
+    }
+
+    public ArrayList<ChuyenBay> getCB_theoMACB(String macb) {
+        ArrayList<ChuyenBay> list = new ArrayList<>();
+        dtb = sql.getReadableDatabase();
+        Cursor cursor = dtb.rawQuery("select * from CHUYENBAY where macb = ?", new String[] {macb});
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            ChuyenBay cb = new ChuyenBay();
+            cb.setMacb(cursor.getString(0));
+            cb.setDiemdi(cursor.getString(1));
+            cb.setDiemden(cursor.getString(2));
+            cb.setGiave(cursor.getInt(3));
+            cb.setTimebay(cursor.getString(4));
+            cb.setTongtime(cursor.getString(5));
+            cb.setSoluongve(cursor.getInt(6));
+            cb.setMamb(cursor.getString(7));
             list.add(cb);
             cursor.moveToNext();
         }
@@ -52,7 +76,8 @@ public class DAO_ChuyenBay {
             cb.setGiave(cursor.getInt(3));
             cb.setTimebay(cursor.getString(4));
             cb.setTongtime(cursor.getString(5));
-            cb.setMamb(cursor.getString(6));
+            cb.setSoluongve(cursor.getInt(6));
+            cb.setMamb(cursor.getString(7));
             list.add(cb);
             cursor.moveToNext();
         }
@@ -73,11 +98,42 @@ public class DAO_ChuyenBay {
             cb.setGiave(cursor.getInt(3));
             cb.setTimebay(cursor.getString(4));
             cb.setTongtime(cursor.getString(5));
-            cb.setMamb(cursor.getString(6));
+            cb.setSoluongve(cursor.getInt(6));
+            cb.setMamb(cursor.getString(7));
             list.add(cb);
             cursor.moveToNext();
         }
         cursor.close();
         return list;
+    }
+
+    public boolean updateSLVMB(ChuyenBay cb) {
+        dtb = sql.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("soluongve", cb.getSoluongve());
+        if(dtb.update("CHUYENBAY", values, "macb = ?", new String[] {cb.getMacb()}) <0) {
+            return false;
+        }
+        return true;
+    }
+
+    public int getGiave(String macb) {
+        int giave = 0;
+        dtb = sql.getReadableDatabase();
+        Cursor cursor = dtb.rawQuery("select giave from CHUYENBAY where macb = ?", new String[] {String.valueOf(macb)});
+        if(cursor.moveToFirst()) {
+            giave = cursor.getInt(0);
+        }
+        return giave;
+    }
+
+    public int getSLve(String macb) {
+        int sl = 0;
+        dtb = sql.getReadableDatabase();
+        Cursor cursor = dtb.rawQuery("select soluongve from CHUYENBAY where macb = ?", new String[] {String.valueOf(macb)});
+        if(cursor.moveToFirst()) {
+            sl = cursor.getInt(0);
+        }
+        return sl;
     }
 }

@@ -1,24 +1,26 @@
-package com.example.da1_group6;
+package com.example.da1_group6.activities;
 
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
 import android.widget.TextView;
 
+import com.example.da1_group6.R;
 import com.example.da1_group6.dao.DAO_KhachHang;
+import com.example.da1_group6.databinding.ActivityForUserBinding;
 import com.example.da1_group6.model.KhachHang;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
@@ -26,8 +28,6 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.da1_group6.databinding.ActivityForUserBinding;
 
 import java.util.ArrayList;
 
@@ -67,7 +67,7 @@ public class ForUserActivity extends AppCompatActivity {
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
             public void onDestinationChanged(@NonNull NavController navController, @NonNull NavDestination navDestination, @Nullable Bundle bundle) {
-                if(navDestination.getId() == R.id.nav_thoat) {
+                if (navDestination.getId() == R.id.nav_thoat) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(ForUserActivity.this);
                     builder.setTitle("Thông báo");
                     builder.setMessage("Bạn có chắc là muốn đăng xuất không?");
@@ -119,8 +119,53 @@ public class ForUserActivity extends AppCompatActivity {
 
         reloadData(email);
 
-        if(kh.getImage() == null) {
-            avatar.setImageResource(R.drawable.img_avatar);
+        drawer.addDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
+            }
+
+            @Override
+            public void onDrawerOpened(@NonNull View drawerView) {
+                reloadData(email);
+            }
+
+            @Override
+            public void onDrawerClosed(@NonNull View drawerView) {
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+                reloadData(email);
+            }
+        });
+
+        dao = new DAO_KhachHang(this);
+        list = dao.getUser(email);
+        kh = list.get(0);
+
+        if (kh.getTenkh() == null || kh.getDiachi() == null || kh.getSdt() == null) {
+
+            Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    LayoutInflater inflater = LayoutInflater.from(ForUserActivity.this);
+                    View custom = inflater.inflate(R.layout.layout_dialog_notify_noname, null);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(ForUserActivity.this);
+                    builder.setView(custom);
+                    builder.setInverseBackgroundForced(false);
+                    builder.setPositiveButton("OKEY", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                }
+            };
+
+            Handler handler = new Handler(Looper.getMainLooper());
+            handler.postDelayed(runnable, 1686);
         }
     }
 
@@ -138,32 +183,25 @@ public class ForUserActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        reloadData(email);
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-    }
-
     public void reloadData(String email) {
         dao = new DAO_KhachHang(this);
         list = dao.getUser(email);
         kh = list.get(0);
 
+
         tv_hello.setText("Xin chào, \n" + kh.getTenkh());
         avatar.setImageBitmap(kh.getImage());
+
+        if (kh.getImage() == null) {
+            avatar.setImageResource(R.drawable.img_avatar);
+        }
 
         String sodustr = String.valueOf(kh.getSodu());
         StringBuilder str = new StringBuilder(sodustr);
         for (int i = str.length(); i > 0; i -= 3) {
             str.insert(i, " ");
         }
-
-        sodu.setText("Số dư: " + str.toString() + " vnđ");
+        sodu.setText("Số dư: " + str + " vnđ");
     }
 
 }

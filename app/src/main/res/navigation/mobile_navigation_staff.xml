@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/nav_qlyvemb_staff"
-        android:name="com.example.da1_group6.ui_staff.Fragment_QLVMB_staff"
+        android:name="com.example.da1_group6.ui_staff.Fragment_Collection_Staff"
         android:label="Quản lý vé máy bay"
-        tools:layout="@layout/fragment_qlvmb_staff" />
+        tools:layout="@layout/fragment__collection__staff" />
 
     <fragment
         android:id="@+id/nav_xnvemb_staff"

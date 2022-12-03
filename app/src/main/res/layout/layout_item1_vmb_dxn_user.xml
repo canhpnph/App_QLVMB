@@ -40,6 +40,14 @@
                     android:textColor="@color/black"
                     android:textSize="9dp" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="90dp"
+                    android:baselineAligned="false"
+                    android:text="Đã xác nhận"
+                    android:textColor="#1E45CF"
+                    android:textSize="12dp" />
             </LinearLayout>
 
             <LinearLayout

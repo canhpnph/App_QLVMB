@@ -123,16 +123,36 @@
             </LinearLayout>
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btn_xnvmb_staff"
+        <LinearLayout
+            android:gravity="center"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:backgroundTint="#DA9A9A"
-            android:text="Xác nhận"
-            android:textAllCaps="false"
-            android:textColor="#29236F"
-            android:textSize="12dp" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_xnvmb_staff"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:backgroundTint="#DA9A9A"
+                android:text="Xác nhận"
+                android:textAllCaps="false"
+                android:textColor="#29236F"
+                android:textSize="12dp" />
+
+            <Button
+                android:layout_marginLeft="30dp"
+                android:id="@+id/btn_tcxnvmb_staff"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:backgroundTint="#DA9A9A"
+                android:text="Từ chối"
+                android:textAllCaps="false"
+                android:textColor="#29236F"
+                android:textSize="12dp" />
+        </LinearLayout>
+
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

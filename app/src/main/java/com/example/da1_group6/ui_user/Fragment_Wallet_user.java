@@ -11,6 +11,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.da1_group6.R;
 import com.example.da1_group6.adapter.Adapter_Recycler_LSGD;
 import com.example.da1_group6.dao.DAO_HoaDonNapTien;
@@ -108,30 +111,61 @@ public class Fragment_Wallet_user extends Fragment {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                if (edt_sotiennap.getText().toString().equals("")) {
-                    Toast.makeText(getContext(), "Không được để trống", Toast.LENGTH_SHORT).show();
+                if (kh.getTenkh() == null || kh.getSdt() == null || kh.getDiachi() == null) {
+                    LayoutInflater inflater = LayoutInflater.from(getContext());
+                    View custom = inflater.inflate(R.layout.layout_dialog_notice_info, null);
+
+                    ImageView img1 = custom.findViewById(R.id.gif_sad_info);
+                    Glide.with(getContext()).load(R.mipmap.gif_sad).into(img1);
+
+                    Runnable runnable = new Runnable() {
+                        @Override
+                        public void run() {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                            builder.setView(custom);
+                            builder.setPositiveButton("OKEY", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog1, int which) {
+                                    dialog1.dismiss();
+                                }
+                            });
+
+                            AlertDialog alertDialog = builder.create();
+                            alertDialog.show();
+                        }
+                    };
+
+                    Handler handler = new Handler(Looper.getMainLooper());
+                    handler.postDelayed(runnable, 500);
+
+
+                    dialog.dismiss();
                     return;
                 } else {
-                    if(Integer.parseInt(edt_sotiennap.getText().toString()) > 100000000) {
-                        Toast.makeText(getContext(), "Bạn chỉ được nạp tối đa 100 triệu / 1 lần. Vui lòng thử lại !!", Toast.LENGTH_SHORT).show();
+                    if (edt_sotiennap.getText().toString().equals("")) {
+                        Toast.makeText(getContext(), "Không được để trống", Toast.LENGTH_SHORT).show();
                         return;
                     } else {
-                        HoaDonNapTien hd = new HoaDonNapTien();
-                        DAO_HoaDonNapTien dao = new DAO_HoaDonNapTien(getContext());
+                        if (Integer.parseInt(edt_sotiennap.getText().toString()) > 100000000) {
+                            Toast.makeText(getContext(), "Bạn chỉ được nạp tối đa 100 triệu / 1 lần. Vui lòng thử lại !!", Toast.LENGTH_SHORT).show();
+                            return;
+                        } else {
+                            HoaDonNapTien hd = new HoaDonNapTien();
+                            DAO_HoaDonNapTien dao = new DAO_HoaDonNapTien(getContext());
 
-                        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-                        String time = format.format(Calendar.getInstance().getTime());
+                            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                            String time = format.format(Calendar.getInstance().getTime());
 
-                        String sotiennap_str = edt_sotiennap.getText().toString().trim();
-                        StringBuilder str_sotiennap = new StringBuilder(sotiennap_str);
-                        for (int i = str_sotiennap.length(); i > 0; i -= 3) {
-                            str_sotiennap.insert(i, " ");
+                            String sotiennap_str = edt_sotiennap.getText().toString().trim();
+                            StringBuilder str_sotiennap = new StringBuilder(sotiennap_str);
+                            for (int i = str_sotiennap.length(); i > 0; i -= 3) {
+                                str_sotiennap.insert(i, " ");
+                            }
+
+                            dao.addHD(new HoaDonNapTien(hd.getId(), kh.getMakh(), Integer.parseInt(edt_sotiennap.getText().toString()), time, 0));
+                            Toast.makeText(getContext(), "Bạn vừa gửi yêu cầu nạp tiền với số tiền là " + str_sotiennap + " vnd. Vui lòng chờ admin xác nhận!!!", Toast.LENGTH_SHORT).show();
                         }
-
-                        dao.addHD(new HoaDonNapTien(hd.getId(), kh.getMakh(), Integer.parseInt(edt_sotiennap.getText().toString()), time, 0));
-                        Toast.makeText(getContext(), "Bạn vừa gửi yêu cầu nạp tiền với số tiền là " + str_sotiennap + " vnd. Vui lòng chờ admin xác nhận!!!", Toast.LENGTH_SHORT).show();
                     }
-
                 }
             }
         });

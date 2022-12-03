@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="150dp"
-    android:background="@drawable/rsz_headerbg"
+    android:background="@drawable/custom_header"
     android:gravity="bottom"
     android:orientation="horizontal"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
@@ -24,7 +24,9 @@
         android:text="Xin chào, \nNguyễn Văn A"
         android:textSize="15dp"
         android:padding="19dp"
+        android:lineHeight="30dp"
         android:textStyle="bold"
+        android:textColor="#7b29f0"
         android:gravity="left"
         android:layout_gravity="center"
         />
@@ -36,7 +38,7 @@
         android:layout_height="wrap_content"
         android:textSize="13dp"
         android:text="Số dư: 500.000 vnđ"
-        android:textColor="#9CE42E"
+        android:textColor="#D80E0E"
         android:layout_marginTop="24dp"
         android:layout_marginLeft="-140dp"/>
 </LinearLayout>

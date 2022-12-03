@@ -1,10 +1,14 @@
 package com.example.da1_group6.adapter;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +22,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.da1_group6.R;
+import com.example.da1_group6.dao.DAO_ChuyenBay;
 import com.example.da1_group6.dao.DAO_KhachHang;
 import com.example.da1_group6.dao.DAO_LSGD;
 import com.example.da1_group6.dao.DAO_VeMB;
@@ -66,6 +72,26 @@ public class Adapter_Recycler_BookVe_user extends RecyclerView.Adapter<Adapter_R
         holder.tvfrom.setText("From: " + cb.getDiemdi());
         holder.tvto.setText("To: " + cb.getDiemden());
         holder.tvtimebay.setText(cb.getTimebay());
+
+        holder.tvslve.setVisibility(View.GONE);
+
+        holder.imgdown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                holder.imgdown.setImageResource(R.drawable.ic_down);
+                holder.tvslve.setText("Còn lại: " + cb.getSoluongve() + " vé");
+                holder.tvslve.setVisibility(View.VISIBLE);
+
+                holder.imgdown.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        holder.imgdown.setImageResource(R.drawable.ic_up);
+                        holder.tvslve.setVisibility(View.GONE);
+                    }
+                });
+            }
+        });
+
 
         String giavestr = String.valueOf(cb.getGiave());
         StringBuilder str_giave = new StringBuilder(giavestr);
@@ -124,33 +150,132 @@ public class Adapter_Recycler_BookVe_user extends RecyclerView.Adapter<Adapter_R
                 btn_confirm.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        DAO_VeMB dao = new DAO_VeMB(context);
-                        VeMB vmb = new VeMB();
+                        if (kh.getTenkh() == null || kh.getSdt() == null || kh.getDiachi() == null) {
+                            Runnable runnable = new Runnable() {
+                                @Override
+                                public void run() {
+                                    LayoutInflater inflater = LayoutInflater.from(context);
+                                    View custom = inflater.inflate(R.layout.layout_dialog_notice_info, null);
 
-                        int sodu = kh.getSodu();
+                                    ImageView img1 = custom.findViewById(R.id.gif_sad_info);
+                                    Glide.with(context).load(R.mipmap.gif_sad).into(img1);
 
-                        if(sodu < cb.getGiave()) {
-                            Toast.makeText(context, "Số dư của bạn không đủ. Vui lòng nạp thêm tiền để tiếp tục sử dụng dịch vụ!", Toast.LENGTH_SHORT).show();
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                                    builder.setView(custom);
+                                    builder.setPositiveButton("OKEY", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog1, int which) {
+                                            dialog1.dismiss();
+                                        }
+                                    });
+
+                                    AlertDialog alertDialog = builder.create();
+                                    alertDialog.show();
+                                }
+                            };
+
+                            Handler handler = new Handler(Looper.getMainLooper());
+                            handler.postDelayed(runnable, 500);
+
+
                             dialog.dismiss();
                             return;
+
                         } else {
-                            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-                            String date = format.format(Calendar.getInstance().getTime());
+                            DAO_VeMB dao_vmb = new DAO_VeMB(context);
+                            VeMB vmb = new VeMB();
 
-                            dao.addVMB(new VeMB(vmb.getMavmb(), mamb, macb, manv, makh, date, 0));
-                            holder.btn_bookve.setText("Đã đặt vé");
-                            holder.btn_bookve.setEnabled(false);
-                            holder.btn_bookve.setTextColor(Color.WHITE);
+                            int sodu = kh.getSodu();
+                            if (sodu < cb.getGiave()) {
+                                Runnable runnable = new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        LayoutInflater inflater = LayoutInflater.from(context);
+                                        View custom = inflater.inflate(R.layout.layout_dialog_notice_hettien, null);
 
-                            Toast.makeText(context, "Đặt vé thành công!", Toast.LENGTH_SHORT).show();
-                            int sodu_after = sodu - cb.getGiave();
-                            dao_user.update_Tien(new KhachHang(kh.getMakh(), kh.getTenkh(), kh.getNgaysinh(), kh.getEmail(), kh.getSdt(), kh.getCccd(), kh.getGioitinh(),
-                                    kh.getDiachi(), kh.getQuoctich(), kh.getMatkhau(), kh.getImage(), sodu_after));
+                                        ImageView img1 = custom.findViewById(R.id.gif_sad_hettien);
+                                        Glide.with(context).load(R.mipmap.gif_sad).into(img1);
 
-                            DAO_LSGD dao_lsgd = new DAO_LSGD(context);
-                            LSGD ls = new LSGD();
-                            dao_lsgd.addLS(new LSGD(ls.getId(), kh.getMakh(), "Mua vé máy bay", cb.getGiave(), date));
-                            dialog.dismiss();
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                                        builder.setView(custom);
+                                        builder.setPositiveButton("OKEY", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog1, int which) {
+                                                dialog1.dismiss();
+                                            }
+                                        });
+
+                                        AlertDialog alertDialog = builder.create();
+                                        alertDialog.show();
+                                    }
+                                };
+
+                                Handler handler = new Handler(Looper.getMainLooper());
+                                handler.postDelayed(runnable, 500);
+
+                                dialog.dismiss();
+                                return;
+                            } else {
+                                if (cb.getSoluongve() <= 0) {
+                                    Runnable runnable = new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            LayoutInflater inflater = LayoutInflater.from(context);
+                                            View custom = inflater.inflate(R.layout.layout_dialog_hetve, null);
+
+                                            ImageView img1 = custom.findViewById(R.id.gif_sad_hetve);
+                                            Glide.with(context).load(R.mipmap.gif_sad).into(img1);
+
+                                            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                                            builder.setView(custom);
+                                            builder.setPositiveButton("OKEY", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog1, int which) {
+                                                    dialog1.dismiss();
+                                                }
+                                            });
+
+                                            AlertDialog alertDialog = builder.create();
+                                            alertDialog.show();
+                                        }
+                                    };
+
+                                    Handler handler = new Handler(Looper.getMainLooper());
+                                    handler.postDelayed(runnable, 500);
+
+                                    holder.btn_bookve.setText("Hết vé");
+                                    holder.btn_bookve.setEnabled(false);
+                                    holder.btn_bookve.setTextColor(Color.WHITE);
+                                    dialog.dismiss();
+                                    return;
+                                } else {
+                                    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                                    String date = format.format(Calendar.getInstance().getTime());
+
+                                    dao_vmb.addVMB(new VeMB(vmb.getMavmb(), mamb, macb, manv, makh, date, 0));
+                                    holder.btn_bookve.setText("Đã đặt vé");
+                                    holder.btn_bookve.setEnabled(false);
+                                    holder.btn_bookve.setTextColor(Color.WHITE);
+
+                                    Toast.makeText(context, "Đặt vé thành công!", Toast.LENGTH_SHORT).show();
+                                    int sodu_after = sodu - cb.getGiave();
+                                    dao_user.update_Tien(new KhachHang(kh.getMakh(), kh.getTenkh(), kh.getNgaysinh(), kh.getEmail(), kh.getSdt(), kh.getCccd(), kh.getGioitinh(),
+                                            kh.getDiachi(), kh.getQuoctich(), kh.getMatkhau(), kh.getImage(), sodu_after));
+
+                                    DAO_LSGD dao_lsgd = new DAO_LSGD(context);
+                                    LSGD ls = new LSGD();
+                                    dao_lsgd.addLS(new LSGD(ls.getId(), kh.getMakh(), "Mua vé máy bay", cb.getGiave(), date));
+
+                                    int soluongve_now = cb.getSoluongve() - 1;
+
+                                    DAO_ChuyenBay dao_chuyenBay = new DAO_ChuyenBay(context);
+                                    dao_chuyenBay.updateSLVMB(new ChuyenBay(cb.getMacb(), cb.getDiemdi(), cb.getDiemden(), cb.getGiave(), cb.getTimebay(), cb.getTongtime(), soluongve_now, cb.getMamb()));
+
+                                    holder.tvslve.setText("Còn lại: " + soluongve_now + " vé");
+
+                                    dialog.dismiss();
+                                }
+                            }
                         }
                     }
                 });
@@ -169,8 +294,8 @@ public class Adapter_Recycler_BookVe_user extends RecyclerView.Adapter<Adapter_R
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView img;
-        TextView tvmacb, tvfrom, tvto, tvtimebay, tvgiave;
+        ImageView img, imgdown;
+        TextView tvmacb, tvfrom, tvto, tvtimebay, tvgiave, tvslve;
         Button btn_bookve;
 
         public ViewHolder(@NonNull View itemView) {
@@ -182,7 +307,8 @@ public class Adapter_Recycler_BookVe_user extends RecyclerView.Adapter<Adapter_R
             tvtimebay = itemView.findViewById(R.id.tv_timebay_bookve);
             btn_bookve = itemView.findViewById(R.id.btn_datve);
             tvgiave = itemView.findViewById(R.id.tv_giave_bookve);
+            tvslve = itemView.findViewById(R.id.tv_soluongve_bookve);
+            imgdown = itemView.findViewById(R.id.btn_down);
         }
     }
-
 }

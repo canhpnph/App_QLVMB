@@ -1,11 +1,9 @@
-package com.example.da1_group6;
+package com.example.da1_group6.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -14,13 +12,12 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.da1_group6.R;
 import com.example.da1_group6.dao.DAO_KhachHang;
 import com.example.da1_group6.dao.DAO_QLNV;
 import com.example.da1_group6.dao.DAO_admin;
-import com.example.da1_group6.database.SQLite;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -131,8 +128,7 @@ public class Activity_Login extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("TB", MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         if (check == false) {
-            editor.putString("User", user);
-            editor.putString("Pass", pass);
+            editor.clear();
         } else {
             editor.putString("User", user);
             editor.putString("Pass", pass);

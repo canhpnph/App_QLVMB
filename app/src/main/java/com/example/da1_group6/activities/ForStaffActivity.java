@@ -1,19 +1,23 @@
-package com.example.da1_group6;
+package com.example.da1_group6.activities;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.drawable.Drawable;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
+import android.widget.TextView;
 
-import com.google.android.material.snackbar.Snackbar;
+import com.example.da1_group6.R;
+import com.example.da1_group6.dao.DAO_QLNV;
+import com.example.da1_group6.databinding.ActivityForStaffBinding;
+import com.example.da1_group6.model.NhanVien;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
@@ -22,31 +26,39 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.da1_group6.databinding.ActivityForAdminBinding;
+import java.util.ArrayList;
 
-public class ForAdminActivity extends AppCompatActivity {
+import de.hdodenhof.circleimageview.CircleImageView;
+
+public class ForStaffActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-    private ActivityForAdminBinding binding;
+    private ActivityForStaffBinding binding;
+    TextView tv_hello;
+    CircleImageView avatar;
+    String email;
+
+    DAO_QLNV dao;
+    NhanVien nv;
+    ArrayList<NhanVien> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityForAdminBinding.inflate(getLayoutInflater());
+        binding = ActivityForStaffBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        setSupportActionBar(binding.appBarForAdmin.toolbar);
+        setSupportActionBar(binding.appBarForStaff.toolbar);
 
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
 
-
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_qlyvemb_admin, R.id.nav_hangmb_admin, R.id.nav_qlynv_admin, R.id.nav_confirm_money_admin , R.id.nav_doanhthu_admin, R.id.nav_doimk_admin)
+                R.id.nav_qlyvemb_staff, R.id.nav_xnvemb_staff, R.id.nav_doanhthu_staff, R.id.nav_info_staff, R.id.nav_doimk_staff)
                 .setOpenableLayout(drawer)
                 .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_for_admin);
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_for_staff);
 
         navigationView.setItemIconTintList(null);
 
@@ -54,13 +66,13 @@ public class ForAdminActivity extends AppCompatActivity {
             @Override
             public void onDestinationChanged(@NonNull NavController navController, @NonNull NavDestination navDestination, @Nullable Bundle bundle) {
                 if(navDestination.getId() == R.id.nav_thoat) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(ForAdminActivity.this);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(ForStaffActivity.this);
                     builder.setTitle("Thông báo");
                     builder.setMessage("Bạn có chắc là muốn đăng xuất không?");
                     builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            ProgressDialog dialog1 = new ProgressDialog(ForAdminActivity.this);
+                            ProgressDialog dialog1 = new ProgressDialog(ForStaffActivity.this);
                             dialog1.setMessage("Đang đăng xuất...");
                             dialog1.show();
                             Thread thread = new Thread() {
@@ -94,19 +106,72 @@ public class ForAdminActivity extends AppCompatActivity {
 
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        View viewheader = navigationView.getHeaderView(0);
+        tv_hello = viewheader.findViewById(R.id.tv_hello_staff);
+        avatar = viewheader.findViewById(R.id.avatar_inheader_staff);
+
+        SharedPreferences preferences = getSharedPreferences("TB", Context.MODE_PRIVATE);
+        email = preferences.getString("User", "");
+
+        dao = new DAO_QLNV(this);
+        list = dao.getStaff(email);
+        nv = list.get(0);
+
+        tv_hello.setText("Xin chào, \n" + nv.getTennv());
+        avatar.setImageBitmap(nv.getImage());
+
+        if(nv.getImage() == null) {
+            avatar.setImageResource(R.drawable.img_avatar);
+        }
+        reloadData();
+
+        drawer.addDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
+
+            }
+
+            @Override
+            public void onDrawerOpened(@NonNull View drawerView) {
+                reloadData();
+            }
+
+            @Override
+            public void onDrawerClosed(@NonNull View drawerView) {
+
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+                reloadData();
+            }
+        });
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
         getMenuInflater().inflate(R.menu.menu_settings, menu);
         return true;
     }
 
     @Override
     public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_for_admin);
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_for_staff);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+    public void reloadData() {
+        dao = new DAO_QLNV(this);
+        list = dao.getStaff(email);
+        nv = list.get(0);
+
+        tv_hello.setText("Xin chào, \n" + nv.getTennv());
+        avatar.setImageBitmap(nv.getImage());
+        if(nv.getImage() == null) {
+            avatar.setImageResource(R.drawable.img_avatar);
+        }
+    }
+
 }

@@ -119,12 +119,16 @@ public class Adapter_Recycler_qlvmb_staff extends RecyclerView.Adapter<Adapter_R
 
 
                 int status = vmb.getTrangthai();
+
                 if (status == 0) {
-                    icstatus.setImageResource(R.drawable.ic_close);
+                    icstatus.setImageResource(R.drawable.ic_wait);
                     tvstatus.setText("Chưa xác nhận!");
-                } else {
+                } else if (status == 1){
                     icstatus.setImageResource(R.drawable.ic_tick);
                     tvstatus.setText("Đã xác nhận!");
+                } else {
+                    icstatus.setImageResource(R.drawable.ic_close);
+                    tvstatus.setText("Đã từ chối!");
                 }
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);

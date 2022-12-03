@@ -19,6 +19,8 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        app:itemTextColor="#7b29f0"
+        android:background="#ECE8E8"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_for_admin"
         app:menu="@menu/activity_for_admin_drawer" />

@@ -1,20 +1,18 @@
-package com.example.da1_group6;
+package com.example.da1_group6.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.da1_group6.R;
 import com.example.da1_group6.dao.DAO_KhachHang;
 import com.example.da1_group6.model.KhachHang;
 

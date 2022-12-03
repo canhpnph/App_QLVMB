@@ -32,7 +32,6 @@ import java.util.Calendar;
 
 
 public class Fragment_QLVMB_staff extends Fragment {
-    TextView tv_date;
     RecyclerView recyclerView;
     DAO_VeMB dao;
     ArrayList<VeMB> list;

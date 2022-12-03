@@ -46,7 +46,7 @@ public class Fragment_Confirm_Money_admin extends Fragment {
 
         if(list.isEmpty()) {
             tv_no_result.setText("Hmm...Có vẻ như không có gì ở đây ");
-            ic_sad.setImageResource(R.drawable.img_sad);
+            ic_sad.setImageResource(R.drawable.img_sad1);
         } else {
             tv_no_result.setText("");
             ic_sad.setImageDrawable(null);

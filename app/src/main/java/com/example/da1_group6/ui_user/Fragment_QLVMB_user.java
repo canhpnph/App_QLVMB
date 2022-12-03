@@ -41,8 +41,10 @@ public class Fragment_QLVMB_user extends Fragment {
             public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
                 if(position == 0) {
                     tab.setText("Vé đã xác nhận");
-                } else {
+                } else if(position == 1){
                     tab.setText("Vé chờ xác nhận");
+                } else {
+                    tab.setText("Vé bị từ chối");
                 }
             }
         });

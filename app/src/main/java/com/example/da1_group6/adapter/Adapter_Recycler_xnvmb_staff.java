@@ -16,10 +16,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.da1_group6.R;
+import com.example.da1_group6.dao.DAO_ChuyenBay;
+import com.example.da1_group6.dao.DAO_KhachHang;
+import com.example.da1_group6.dao.DAO_LSGD;
 import com.example.da1_group6.dao.DAO_VeMB;
+import com.example.da1_group6.model.ChuyenBay;
+import com.example.da1_group6.model.KhachHang;
+import com.example.da1_group6.model.LSGD;
 import com.example.da1_group6.model.VeMB;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -70,9 +78,39 @@ public class Adapter_Recycler_xnvmb_staff extends RecyclerView.Adapter<Adapter_R
             public void onClick(View v) {
                 dao.updateVMB(new VeMB(vmb.getMavmb(), vmb.getMamb(), vmb.getMacb(), vmb.getManv(), vmb.getMakh(), vmb.getTimedatve(), 1));
                 Toast.makeText(context, "Xác nhận thành công!", Toast.LENGTH_SHORT).show();
-                notifyDataSetChanged();
-                list.remove(index);
-                notifyDataSetChanged();
+                reloadData(vmb.getManv());
+            }
+        });
+
+        holder.btn_tc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dao.updateVMB(new VeMB(vmb.getMavmb(), vmb.getMamb(), vmb.getMacb(), vmb.getManv(), vmb.getMakh(), vmb.getTimedatve(), 2));
+                Toast.makeText(context, "Từ chối thành công!", Toast.LENGTH_SHORT).show();
+                reloadData(vmb.getManv());
+
+                DAO_KhachHang dao_kh = new DAO_KhachHang(context);
+                ArrayList<KhachHang> list_kh = dao_kh.getUser_ID(vmb.getMakh());
+                KhachHang kh = list_kh.get(0);
+
+                DAO_ChuyenBay dao_cb = new DAO_ChuyenBay(context);
+
+                ArrayList<ChuyenBay> list_cb = dao_cb.getCB_theoMACB(vmb.getMacb());
+                ChuyenBay cb = list_cb.get(0);
+
+                dao_cb.updateSLVMB(new ChuyenBay(cb.getMacb(), cb.getDiemdi(), cb.getDiemden(), cb.getGiave(), cb.getTimebay(), cb.getTongtime(), cb.getSoluongve() + 1, cb.getMamb()));
+
+                int sodu_after = kh.getSodu() + cb.getGiave();
+                dao_kh.update_Tien(new KhachHang(kh.getMakh(), kh.getTenkh(), kh.getNgaysinh(), kh.getEmail(), kh.getSdt(), kh.getCccd(), kh.getGioitinh(), kh.getDiachi(), kh.getQuoctich(), kh.getMatkhau(), kh.getImage(), sodu_after));
+
+                DAO_LSGD dao_ls = new DAO_LSGD(context);
+                LSGD ls = new LSGD();
+
+                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                String date = format.format(Calendar.getInstance().getTime());
+
+                dao_ls.addLS(new LSGD(ls.getId(), vmb.getMakh(), "Hoàn trả tiền", cb.getGiave(), date));
+
             }
         });
 
@@ -99,7 +137,8 @@ public class Adapter_Recycler_xnvmb_staff extends RecyclerView.Adapter<Adapter_R
                 TextView tvstatus = view.findViewById(R.id.tv_status_staff_cxn);
                 ImageView icstatus = view.findViewById(R.id.ic_status_staff_cxn);
                 Button btn_confirm = view.findViewById(R.id.btn_xnvmb_staff_indialog);
-
+                Button btn_tcxnvmb = view.findViewById(R.id.btn_tcxnvmb_staff_indialog);
+                TextView tv_or = view.findViewById(R.id.tv_or);
 
                 if (vmb.getMamb().equalsIgnoreCase("VNA")) {
                     logo_mb.setImageResource(R.drawable.logo_vnairlines);
@@ -137,11 +176,14 @@ public class Adapter_Recycler_xnvmb_staff extends RecyclerView.Adapter<Adapter_R
 
                 int status = vmb.getTrangthai();
                 if (status == 0) {
-                    icstatus.setImageResource(R.drawable.ic_close);
+                    icstatus.setImageResource(R.drawable.ic_wait);
                     tvstatus.setText("Chưa xác nhận!");
-                } else {
+                } else if (status == 1){
                     icstatus.setImageResource(R.drawable.ic_tick);
                     tvstatus.setText("Đã xác nhận!");
+                } else {
+                    icstatus.setImageResource(R.drawable.ic_close);
+                    tvstatus.setText("Đã từ chối!");
                 }
 
                 btn_confirm.setOnClickListener(new View.OnClickListener() {
@@ -152,10 +194,50 @@ public class Adapter_Recycler_xnvmb_staff extends RecyclerView.Adapter<Adapter_R
                         notifyDataSetChanged();
                         icstatus.setImageResource(R.drawable.ic_tick);
                         tvstatus.setText("Đã xác nhận!");
-                        btn_confirm.setVisibility(View.GONE);
 
-                        list.remove(index);
+                        btn_confirm.setVisibility(View.GONE);
+                        tv_or.setVisibility(View.GONE);
+                        btn_tcxnvmb.setVisibility(View.GONE);
+
+                        reloadData(vmb.getManv());
+                    }
+                });
+
+                btn_tcxnvmb.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dao.updateVMB(new VeMB(vmb.getMavmb(), vmb.getMamb(), vmb.getMacb(), vmb.getManv(), vmb.getMakh(), vmb.getTimedatve(), 2));
+                        Toast.makeText(context, "Từ chối thành công!", Toast.LENGTH_SHORT).show();
                         notifyDataSetChanged();
+                        icstatus.setImageResource(R.drawable.ic_close);
+                        tvstatus.setText("Đã từ chối!");
+
+                        btn_confirm.setVisibility(View.GONE);
+                        tv_or.setVisibility(View.GONE);
+                        btn_tcxnvmb.setVisibility(View.GONE);
+                        reloadData(vmb.getManv());
+
+                        DAO_KhachHang dao_kh = new DAO_KhachHang(context);
+                        ArrayList<KhachHang> list_kh = dao_kh.getUser_ID(vmb.getMakh());
+                        KhachHang kh = list_kh.get(0);
+
+                        DAO_ChuyenBay dao_cb = new DAO_ChuyenBay(context);
+
+                        ArrayList<ChuyenBay> list_cb = dao_cb.getCB_theoMACB(vmb.getMacb());
+                        ChuyenBay cb = list_cb.get(0);
+
+                        dao_cb.updateSLVMB(new ChuyenBay(cb.getMacb(), cb.getDiemdi(), cb.getDiemden(), cb.getGiave(), cb.getTimebay(), cb.getTongtime(), cb.getSoluongve() + 1, cb.getMamb()));
+
+                        int sodu_after = kh.getSodu() + cb.getGiave();
+                        dao_kh.update_Tien(new KhachHang(kh.getMakh(), kh.getTenkh(), kh.getNgaysinh(), kh.getEmail(), kh.getSdt(), kh.getCccd(), kh.getGioitinh(), kh.getDiachi(), kh.getQuoctich(), kh.getMatkhau(), kh.getImage(), sodu_after));
+
+                        DAO_LSGD dao_ls = new DAO_LSGD(context);
+                        LSGD ls = new LSGD();
+
+                        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                        String date = format.format(Calendar.getInstance().getTime());
+
+                        dao_ls.addLS(new LSGD(ls.getId(), vmb.getMakh(), "Hoàn trả tiền", cb.getGiave(), date));
                     }
                 });
 
@@ -181,7 +263,7 @@ public class Adapter_Recycler_xnvmb_staff extends RecyclerView.Adapter<Adapter_R
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView img;
         TextView tvmacb, tvfrom, tvto, tvtimebay, tvtenkh, tvtongtime;
-        Button btn_xnvmb;
+        Button btn_xnvmb, btn_tc;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -193,7 +275,13 @@ public class Adapter_Recycler_xnvmb_staff extends RecyclerView.Adapter<Adapter_R
             tvtenkh = itemView.findViewById(R.id.tv_hoten_xnvmb_staff);
             btn_xnvmb = itemView.findViewById(R.id.btn_xnvmb_staff);
             tvtongtime = itemView.findViewById(R.id.tv_tongtime_xnvmb_staff);
+            btn_tc = itemView.findViewById(R.id.btn_tcxnvmb_staff);
         }
     }
 
+    void reloadData(String manv) {
+        list.clear();
+        list = dao.getVMBtheoNV(manv, 0);
+        notifyDataSetChanged();
+    }
 }

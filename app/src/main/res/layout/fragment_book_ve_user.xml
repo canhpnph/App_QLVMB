@@ -6,8 +6,9 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/linear"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="10dp">
 
@@ -82,6 +83,7 @@
 
             <LinearLayout
                 android:layout_width="wrap_content"
+                android:paddingStart="15dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
@@ -118,7 +120,7 @@
 
                 <TextView
                     android:id="@+id/tv_date_bookve_user"
-                    android:layout_width="100dp"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:paddingStart="10dp"
@@ -128,10 +130,10 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginTop="10dp"
-                android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <ImageView
@@ -145,10 +147,10 @@
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_marginTop="20dp"
             android:id="@+id/recycleriew_chuyenbay_in_bookve"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
@@ -156,13 +158,14 @@
             android:id="@+id/tv_no_result"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
             android:fontFamily="@font/font_in_wallet"
             android:gravity="center"
-            android:layout_marginTop="100dp"
             android:textColor="@color/black"
             android:textSize="15dp"
             app:layout_anchor="@id/recycleriew_chuyenbay_in_bookve"
             app:layout_anchorGravity="bottom" />
 
     </LinearLayout>
+
 </ScrollView>

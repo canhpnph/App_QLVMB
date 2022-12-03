@@ -4,15 +4,17 @@ public class ChuyenBay {
     String macb, diemdi, diemden;
     int giave;
     String timebay, tongtime;
+    int soluongve;
     String mamb;
 
-    public ChuyenBay(String macb, String diemdi, String diemden, int giave, String timebay,String tongtime, String mamb) {
+    public ChuyenBay(String macb, String diemdi, String diemden, int giave, String timebay,String tongtime,int soluongve, String mamb) {
         this.macb = macb;
         this.diemdi = diemdi;
         this.diemden = diemden;
         this.giave = giave;
         this.timebay = timebay;
         this.tongtime = tongtime;
+        this.soluongve = soluongve;
         this.mamb = mamb;
     }
 
@@ -73,5 +75,13 @@ public class ChuyenBay {
 
     public void setTongtime(String tongtime) {
         this.tongtime = tongtime;
+    }
+
+    public int getSoluongve() {
+        return soluongve;
+    }
+
+    public void setSoluongve(int soluongve) {
+        this.soluongve = soluongve;
     }
 }
