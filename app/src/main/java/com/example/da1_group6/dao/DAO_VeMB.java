@@ -21,34 +21,6 @@ public class DAO_VeMB {
         sql = new SQLite(context);
     }
 
-//    public ArrayList<VeMB> getAll() {
-//        ArrayList<VeMB> list = new ArrayList<>();
-//        dtb = sql.getReadableDatabase();
-//        Cursor cursor = dtb.rawQuery("select vmb.mavmb, cb.mamb, cb.macb,nv.manv, nv.tennv,kh.makh, kh.tenkh, cb.diemdi, cb.diemden, cb.timebay, cb.tongtime , vmb.timedatve, vmb.trangthai\n" +
-//                "from CHUYENBAY cb , KHACHHANG kh , NHANVIEN nv, VEMAYBAY vmb \n" +
-//                "where vmb.macb = cb.macb and vmb.manv = nv.manv and vmb.makh = kh.makh", null);
-//        cursor.moveToFirst();
-//        while (!cursor.isAfterLast()) {
-//            VeMB vmb = new VeMB();
-//            vmb.setMavmb(cursor.getInt(0));
-//            vmb.setMamb(cursor.getString(1));
-//            vmb.setMacb(cursor.getString(2));
-//            vmb.setManv(cursor.getString(3));
-//            vmb.setTennv(cursor.getString(4));
-//            vmb.setMakh(cursor.getString(5));
-//            vmb.setTenkh(cursor.getString(6));
-//            vmb.setDiemdi(cursor.getString(7));
-//            vmb.setDiemden(cursor.getString(8));
-//            vmb.setTimebay(cursor.getString(9));
-//            vmb.setTongtime(cursor.getString(10));
-//            vmb.setTimedatve(cursor.getString(11));
-//            vmb.setTrangthai(cursor.getInt(12));
-//            list.add(vmb);
-//            cursor.moveToNext();
-//        }
-//        cursor.close();
-//        return list;
-//    }
 
     public boolean addVMB(VeMB vmb) {
         dtb = sql.getWritableDatabase();
@@ -191,44 +163,44 @@ public class DAO_VeMB {
         return list;
     }
 
-    public int get_tongdoanhthu_staff(String manv, String ngaybd, String ngaykt) {
+    public int get_tongdoanhthu_staff(String manv, String ngaybd, String ngaykt, int status) {
         int sum = 0;
         dtb = sql.getReadableDatabase();
         Cursor cursor = dtb.rawQuery("select sum(cb.giave) from VEMAYBAY vmb, CHUYENBAY cb, NHANVIEN nv where vmb.macb = cb.macb and vmb.manv = nv.manv and vmb.manv = ?" +
-                "and timedatve >= '" + ngaybd + "' and timedatve <= '" + ngaykt + "'", new String[] {manv});
+                "and timedatve >= '" + ngaybd + "' and timedatve <= '" + ngaykt + "' and trangthai = ?", new String[] {manv, String.valueOf(status)});
         if(cursor.moveToFirst()) {
             sum = cursor.getInt(0);
         }
         return sum;
     }
 
-    public int get_tongveban_staff(String manv, String ngaybd , String ngaykt) {
+    public int get_tongveban_staff(String manv, String ngaybd , String ngaykt, int status) {
         int sum = 0;
         dtb = sql.getReadableDatabase();
         Cursor cursor = dtb.rawQuery("select count(*) from VEMAYBAY vmb, CHUYENBAY cb, NHANVIEN nv where vmb.macb = cb.macb and vmb.manv = nv.manv and vmb.manv = ?" +
-                "and timedatve >= '" + ngaybd + "' and timedatve <= '" + ngaykt + "'", new String[] {manv});
+                "and timedatve >= '" + ngaybd + "' and timedatve <= '" + ngaykt + "' and trangthai = ?", new String[] {manv, String.valueOf(status)});
         if(cursor.moveToFirst()) {
             sum = cursor.getInt(0);
         }
         return sum;
     }
 
-    public int get_tongdoanhthu(String ngaybd, String ngaykt) {
+    public int get_tongdoanhthu(String ngaybd, String ngaykt, int status) {
         int sum = 0;
         dtb = sql.getReadableDatabase();
         Cursor cursor = dtb.rawQuery("select sum(cb.giave) from VEMAYBAY vmb, CHUYENBAY cb, NHANVIEN nv where vmb.macb = cb.macb and vmb.manv = nv.manv " +
-                "and timedatve >= '" + ngaybd + "' and timedatve <= '" + ngaykt + "'", null);
+                "and timedatve >= '" + ngaybd + "' and timedatve <= '" + ngaykt + "' and trangthai = ?", new String[] {String.valueOf(status)});
         if(cursor.moveToFirst()) {
             sum = cursor.getInt(0);
         }
         return sum;
     }
 
-    public int get_tongveban(String ngaybd , String ngaykt) {
+    public int get_tongveban(String ngaybd , String ngaykt, int status) {
         int sum = 0;
         dtb = sql.getReadableDatabase();
         Cursor cursor = dtb.rawQuery("select count(*) from VEMAYBAY vmb, CHUYENBAY cb, NHANVIEN nv where vmb.macb = cb.macb and vmb.manv = nv.manv " +
-                "and timedatve >= '" + ngaybd + "' and timedatve <= '" + ngaykt + "'", null);
+                "and timedatve >= '" + ngaybd + "' and timedatve <= '" + ngaykt + "' and trnagthai = ?", new String[] {String.valueOf(status)});
         if(cursor.moveToFirst()) {
             sum = cursor.getInt(0);
         }

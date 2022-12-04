@@ -1,6 +1,7 @@
 package com.example.da1_group6.adapter;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,6 +78,12 @@ public class Adapter_Recycler_HDNT extends RecyclerView.Adapter<Adapter_Recycler
                 DAO_LSGD dao_lsgd = new DAO_LSGD(context);
                 LSGD ls = new LSGD();
                 dao_lsgd.addLS(new LSGD(ls.getId(), makh, "Nạp tiền", hd.getSotiennap(), hd.getTimenap()));
+
+                SharedPreferences preferences = context.getSharedPreferences("NOTI_NAPTIEN", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("makh", String.valueOf(kh));
+                editor.putBoolean("check", true);
+                editor.commit();
             }
         });
 

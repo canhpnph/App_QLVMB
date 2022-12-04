@@ -164,6 +164,12 @@ public class Fragment_Wallet_user extends Fragment {
 
                             dao.addHD(new HoaDonNapTien(hd.getId(), kh.getMakh(), Integer.parseInt(edt_sotiennap.getText().toString()), time, 0));
                             Toast.makeText(getContext(), "Bạn vừa gửi yêu cầu nạp tiền với số tiền là " + str_sotiennap + " vnd. Vui lòng chờ admin xác nhận!!!", Toast.LENGTH_SHORT).show();
+
+                            SharedPreferences preferences = getActivity().getSharedPreferences("NOTI", Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = preferences.edit();
+                            editor.putBoolean("noti", true);
+                            editor.commit();
+
                         }
                     }
                 }

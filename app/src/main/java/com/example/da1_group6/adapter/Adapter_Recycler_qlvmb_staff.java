@@ -52,7 +52,7 @@ public class Adapter_Recycler_qlvmb_staff extends RecyclerView.Adapter<Adapter_R
             holder.img.setImageResource(R.drawable.logo_bamboo);
         }
 
-        holder.tvmacb.setText("Mã chuyến bay: " + vmb.getMacb());
+        holder.tvmacb.setText("Mã CB: " + vmb.getMacb());
         holder.tvfrom.setText("From: " + vmb.getDiemdi());
         holder.tvto.setText("To: " + vmb.getDiemden());
         holder.tvtimebay.setText(vmb.getTimebay());
@@ -106,11 +106,11 @@ public class Adapter_Recycler_qlvmb_staff extends RecyclerView.Adapter<Adapter_R
 
                 int gioitinh = vmb.getSex_user();
                 if(gioitinh == 0) {
-                    tvsex_user.setText("Giới tính: Nam");
+                    tvsex_user.setText("GT: Nam");
                 } else if(gioitinh == 1) {
-                    tvsex_user.setText("Giới tính: Nữ");
+                    tvsex_user.setText("GT: Nữ");
                 } else {
-                    tvsex_user.setText("Giới tính: Khác");
+                    tvsex_user.setText("GT: Khác");
                 }
 
                 tvemail_user.setText("Email: " + vmb.getEmail_user());

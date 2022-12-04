@@ -66,7 +66,7 @@ public class Adapter_Recycler_xnvmb_staff extends RecyclerView.Adapter<Adapter_R
             holder.img.setImageResource(R.drawable.logo_bamboo);
         }
 
-        holder.tvmacb.setText("Mã chuyến bay: " + vmb.getMacb());
+        holder.tvmacb.setText("Mã CB: " + vmb.getMacb());
         holder.tvfrom.setText("From: " + vmb.getDiemdi());
         holder.tvto.setText("To: " + vmb.getDiemden());
         holder.tvtimebay.setText(vmb.getTimebay());
@@ -79,6 +79,12 @@ public class Adapter_Recycler_xnvmb_staff extends RecyclerView.Adapter<Adapter_R
                 dao.updateVMB(new VeMB(vmb.getMavmb(), vmb.getMamb(), vmb.getMacb(), vmb.getManv(), vmb.getMakh(), vmb.getTimedatve(), 1));
                 Toast.makeText(context, "Xác nhận thành công!", Toast.LENGTH_SHORT).show();
                 reloadData(vmb.getManv());
+
+                SharedPreferences preferences = context.getSharedPreferences("NOTI_STT_VMB", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("makh", String.valueOf(vmb.getMakh()));
+                editor.putBoolean("check", true);
+                editor.commit();
             }
         });
 
@@ -111,6 +117,11 @@ public class Adapter_Recycler_xnvmb_staff extends RecyclerView.Adapter<Adapter_R
 
                 dao_ls.addLS(new LSGD(ls.getId(), vmb.getMakh(), "Hoàn trả tiền", cb.getGiave(), date));
 
+                SharedPreferences preferences = context.getSharedPreferences("NOTI_STT_VMB", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("makh", String.valueOf(vmb.getMakh()));
+                editor.putBoolean("check", true);
+                editor.commit();
             }
         });
 
@@ -158,15 +169,19 @@ public class Adapter_Recycler_xnvmb_staff extends RecyclerView.Adapter<Adapter_R
 
                 avt_user.setImageBitmap(vmb.getImage_user());
 
+                if(vmb.getImage_user() == null) {
+                    avt_user.setImageResource(R.drawable.img_avatar);
+                }
+
                 tvtenkh.setText(vmb.getTenkh());
 
                 int gioitinh = vmb.getSex_user();
                 if(gioitinh == 0) {
-                    tvsex_user.setText("Giới tính: Nam");
+                    tvsex_user.setText("GT: Nam");
                 } else if(gioitinh == 1) {
-                    tvsex_user.setText("Giới tính: Nữ");
+                    tvsex_user.setText("GT: Nữ");
                 } else {
-                    tvsex_user.setText("Giới tính: Khác");
+                    tvsex_user.setText("GT: Khác");
                 }
 
                 tvemail_user.setText("Email: " + vmb.getEmail_user());
@@ -200,6 +215,12 @@ public class Adapter_Recycler_xnvmb_staff extends RecyclerView.Adapter<Adapter_R
                         btn_tcxnvmb.setVisibility(View.GONE);
 
                         reloadData(vmb.getManv());
+
+                        SharedPreferences preferences = context.getSharedPreferences("NOTI_STT_VMB", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.putString("makh", String.valueOf(vmb.getMakh()));
+                        editor.putBoolean("check", true);
+                        editor.commit();
                     }
                 });
 
@@ -238,6 +259,12 @@ public class Adapter_Recycler_xnvmb_staff extends RecyclerView.Adapter<Adapter_R
                         String date = format.format(Calendar.getInstance().getTime());
 
                         dao_ls.addLS(new LSGD(ls.getId(), vmb.getMakh(), "Hoàn trả tiền", cb.getGiave(), date));
+
+                        SharedPreferences preferences = context.getSharedPreferences("NOTI_STT_VMB", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.putString("makh", String.valueOf(vmb.getMakh()));
+                        editor.putBoolean("check", true);
+                        editor.commit();
                     }
                 });
 

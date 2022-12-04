@@ -1,7 +1,11 @@
 package com.example.da1_group6.activities;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 
@@ -12,6 +16,8 @@ import com.google.android.material.navigation.NavigationView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
@@ -24,6 +30,10 @@ public class ForAdminActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityForAdminBinding binding;
+
+    public static final String CHANNEL_ID = "channel_id";
+    public static final String CHANNEL_NAME = "channel_name";
+    public static final String CHANNEL_DESC = "channel_desc";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +100,18 @@ public class ForAdminActivity extends AppCompatActivity {
 
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        SharedPreferences preferences = getSharedPreferences("NOTI", MODE_PRIVATE);
+        boolean check_noti = preferences.getBoolean("noti", false);
+        if(check_noti == true) {
+            notification();
+            headNoti();
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putBoolean("noti", false);
+            editor.commit();
+        } else {
+            return;
+        }
     }
 
     @Override
@@ -104,6 +126,29 @@ public class ForAdminActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_for_admin);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    public void notification() {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel notiChannel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_HIGH);
+            notiChannel.setDescription(CHANNEL_DESC);
+
+            NotificationManager managerCompat = getSystemService(NotificationManager.class);
+            managerCompat.createNotificationChannel(notiChannel);
+        }
+    }
+
+    public void headNoti() {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this,
+                CHANNEL_ID)
+                .setContentTitle("Notification")
+                .setContentText("Bạn có yêu cầu xác nhận nạp tiền mới!")
+                .setSmallIcon(R.drawable.ic_avatar_app)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setAutoCancel(true);
+
+        NotificationManagerCompat managerCompat = NotificationManagerCompat.from(this);
+        managerCompat.notify(1002, builder.build());
     }
 
 }

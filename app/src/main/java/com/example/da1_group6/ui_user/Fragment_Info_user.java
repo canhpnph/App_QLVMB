@@ -105,7 +105,7 @@ public class Fragment_Info_user extends Fragment {
         kh = list.get(0);
 
         String[] list1 = {"Nam", "Nữ", "Khác"};
-        String[] list2 = {"Việt Nam", "Hàn Quốc", "Nhật Bản"};
+        String[] list2 = {"Việt Nam", "Hàn Quốc", "Nhật Bản", "Đài Loan", "Khác"};
 
         ArrayAdapter adapter1 = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, list1);
         spin_sex.setAdapter(adapter1);
@@ -144,7 +144,7 @@ public class Fragment_Info_user extends Fragment {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(check()) {
+                if (check()) {
                     String ten = edt_tenkh.getText().toString().trim();
                     String diachi = edt_diachi.getText().toString().trim();
                     String sdt = edt_sdt.getText().toString().trim();
@@ -152,7 +152,7 @@ public class Fragment_Info_user extends Fragment {
                     String ngaysinh = edt_ngaysinh.getText().toString().trim();
                     index_sex = spin_sex.getSelectedItemPosition();
                     index_qt = spin_quoctich.getSelectedItemPosition();
-                    if(dao.update(new KhachHang(kh.getMakh(), ten, ngaysinh, email, sdt, cccd, index_sex,
+                    if (dao.update(new KhachHang(kh.getMakh(), ten, ngaysinh, email, sdt, cccd, index_sex,
                             diachi, index_qt, kh.getMatkhau(), kh.getImage(), kh.getSodu())) == true) {
                         Toast.makeText(getContext(), "Lưu thành công!", Toast.LENGTH_SHORT).show();
                     }
@@ -334,6 +334,25 @@ public class Fragment_Info_user extends Fragment {
             Toast.makeText(getContext(), "Số điện thoại phải có đủ 10 số", Toast.LENGTH_SHORT).show();
             return false;
         }
+
+        if (edt_cccd.getText().toString().length() == 12) {
+            if (!validateNumberCCCD(edt_cccd.getText().toString().trim())) {
+                Toast.makeText(getContext(), "Số CCCD phải bắt đầu bằng 0", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        } else if (edt_cccd.getText().toString().length() == 9) {
+            if (validateNumberCMND(edt_cccd.getText().toString().trim())) {
+            } else {
+                Toast.makeText(getContext(), "Số CMND phải có đủ 9 số", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+
+        } else {
+            Toast.makeText(getContext(), "Số CCCD phải có đủ 12 số", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+
         return true;
     }
 
@@ -343,6 +362,24 @@ public class Fragment_Info_user extends Fragment {
         final String EMAIL_PATTERN = "^0([1-9]{9})$";
         pattern = Pattern.compile(EMAIL_PATTERN);
         matcher = pattern.matcher(numberphone);
+        return matcher.matches();
+    }
+
+    public boolean validateNumberCCCD(String numbercccd) {
+        Pattern pattern;
+        Matcher matcher;
+        final String EMAIL_PATTERN = "^0([0-9]{11})$";
+        pattern = Pattern.compile(EMAIL_PATTERN);
+        matcher = pattern.matcher(numbercccd);
+        return matcher.matches();
+    }
+
+    public boolean validateNumberCMND(String numbercmnd) {
+        Pattern pattern;
+        Matcher matcher;
+        final String EMAIL_PATTERN = "^([0-9]{9})$";
+        pattern = Pattern.compile(EMAIL_PATTERN);
+        matcher = pattern.matcher(numbercmnd);
         return matcher.matches();
     }
 

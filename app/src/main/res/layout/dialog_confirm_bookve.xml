@@ -18,7 +18,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:paddingStart="20dp"
-            android:singleLine="true"
             android:text="Xác nhận thanh toán 1.000.000 VND?"
             android:textColor="@color/black"
             android:textSize="17dp" />

@@ -130,7 +130,7 @@ public class DAO_ChuyenBay {
     public int getSLve(String macb) {
         int sl = 0;
         dtb = sql.getReadableDatabase();
-        Cursor cursor = dtb.rawQuery("select soluongve from CHUYENBAY where macb = ?", new String[] {String.valueOf(macb)});
+        Cursor cursor = dtb.rawQuery("select soluongve from CHUYENBAY where macb = ?", new String[] {macb});
         if(cursor.moveToFirst()) {
             sl = cursor.getInt(0);
         }

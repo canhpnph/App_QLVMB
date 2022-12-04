@@ -55,7 +55,7 @@ public class Adapter_Recycler_qlvmb_admin extends RecyclerView.Adapter<Adapter_R
             holder.logo.setImageResource(R.drawable.logo_bamboo);
         }
 
-        holder.tvmacb.setText("Mã chuyến bay: " + vmb.getMacb());
+        holder.tvmacb.setText("Mã CB: " + vmb.getMacb());
         holder.tvfrom.setText("From: " + vmb.getDiemdi());
         holder.tvto.setText("To: " + vmb.getDiemden());
         holder.tvtimebay.setText(vmb.getTimebay());
@@ -64,9 +64,11 @@ public class Adapter_Recycler_qlvmb_admin extends RecyclerView.Adapter<Adapter_R
 
         int status = vmb.getTrangthai();
         if (status == 0) {
-            holder.status.setImageResource(R.drawable.ic_close);
-        } else {
+            holder.status.setImageResource(R.drawable.ic_wait);
+        } else if (status == 1){
             holder.status.setImageResource(R.drawable.ic_tick);
+        } else {
+            holder.status.setImageResource(R.drawable.ic_close);
         }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -117,15 +119,21 @@ public class Adapter_Recycler_qlvmb_admin extends RecyclerView.Adapter<Adapter_R
                 avt_user.setImageBitmap(vmb.getImage_user());
                 avt_staff.setImageBitmap(vmb.getImage_staff());
 
+                if(vmb.getImage_staff() == null) {
+                    avt_staff.setImageResource(R.drawable.img_avatar);
+                }
+                if(vmb.getImage_user() == null) {
+                    avt_user.setImageResource(R.drawable.img_avatar);
+                }
                 tvtenkh.setText(vmb.getTenkh());
 
                 int gioitinh = vmb.getSex_user();
                 if(gioitinh == 0) {
-                    tvsex_user.setText("Giới tính: Nam");
+                    tvsex_user.setText("GT: Nam");
                 } else if(gioitinh == 1) {
-                    tvsex_user.setText("Giới tính: Nữ");
+                    tvsex_user.setText("GT: Nữ");
                 } else {
-                    tvsex_user.setText("Giới tính: Khác");
+                    tvsex_user.setText("GT: Khác");
                 }
 
                 tvemail_user.setText("Email: " + vmb.getEmail_user());
@@ -138,20 +146,23 @@ public class Adapter_Recycler_qlvmb_admin extends RecyclerView.Adapter<Adapter_R
 
                 int gioitinh1 = vmb.getSex_staff();
                 if(gioitinh1 == 0) {
-                    tvsex_staff.setText("Giới tính: Nam");
+                    tvsex_staff.setText("GT: Nam");
                 } else if(gioitinh1 == 1) {
-                    tvsex_staff.setText("Giới tính: Nữ");
+                    tvsex_staff.setText("GT: Nữ");
                 } else {
-                    tvsex_staff.setText("Giới tính: Khác");
+                    tvsex_staff.setText("GT: Khác");
                 }
 
                 int status = vmb.getTrangthai();
                 if (status == 0) {
-                    icstatus.setImageResource(R.drawable.ic_close);
+                    icstatus.setImageResource(R.drawable.ic_wait);
                     tvstatus.setText("Chưa xác nhận!");
-                } else {
+                } else if (status == 1) {
                     icstatus.setImageResource(R.drawable.ic_tick);
                     tvstatus.setText("Đã xác nhận!");
+                } else {
+                    icstatus.setImageResource(R.drawable.ic_close);
+                    tvstatus.setText("Bị từ chối!");
                 }
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);

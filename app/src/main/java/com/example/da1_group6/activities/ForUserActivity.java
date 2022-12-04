@@ -1,9 +1,12 @@
 package com.example.da1_group6.activities;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -21,6 +24,8 @@ import com.google.android.material.navigation.NavigationView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
@@ -43,6 +48,10 @@ public class ForUserActivity extends AppCompatActivity {
     TextView tv_hello, sodu;
     CircleImageView avatar;
     String email;
+
+    public static final String CHANNEL_ID = "channel_id";
+    public static final String CHANNEL_NAME = "channel_name";
+    public static final String CHANNEL_DESC = "channel_desc";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -167,6 +176,33 @@ public class ForUserActivity extends AppCompatActivity {
             Handler handler = new Handler(Looper.getMainLooper());
             handler.postDelayed(runnable, 1686);
         }
+
+        SharedPreferences preferences1 = getSharedPreferences("NOTI_NAPTIEN", Context.MODE_PRIVATE);
+        SharedPreferences preferences2 = getSharedPreferences("NOTI_STT_VMB", Context.MODE_PRIVATE);
+
+        String makh = preferences1.getString("makh", "");
+        String makh1 = preferences2.getString("makh", "");
+        boolean check = preferences1.getBoolean("check", false);
+        boolean check1 = preferences2.getBoolean("check", false);
+
+        if(makh.equalsIgnoreCase(String.valueOf(kh.getMakh())) && check == true) {
+            notification1();
+            headNoti1();
+            SharedPreferences.Editor editor = preferences1.edit();
+            editor.putString("makh", String.valueOf(kh.getMakh()));
+            editor.putBoolean("check", false);
+            editor.commit();
+        }
+
+        if(makh1.equalsIgnoreCase(String.valueOf(kh.getMakh())) && check1 == true) {
+            notification2();
+            headNoti2();
+            SharedPreferences.Editor editor = preferences2.edit();
+            editor.putString("makh", String.valueOf(kh.getMakh()));
+            editor.putBoolean("check", false);
+            editor.commit();
+        }
+
     }
 
     @Override
@@ -202,6 +238,52 @@ public class ForUserActivity extends AppCompatActivity {
             str.insert(i, " ");
         }
         sodu.setText("Số dư: " + str + " vnđ");
+    }
+
+    public void notification1() {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel notiChannel = new NotificationChannel("id", "name", NotificationManager.IMPORTANCE_HIGH);
+            notiChannel.setDescription("desc");
+
+            NotificationManager managerCompat = getSystemService(NotificationManager.class);
+            managerCompat.createNotificationChannel(notiChannel);
+        }
+    }
+
+    public void notification2() {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel notiChannel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_HIGH);
+            notiChannel.setDescription(CHANNEL_DESC);
+
+            NotificationManager managerCompat = getSystemService(NotificationManager.class);
+            managerCompat.createNotificationChannel(notiChannel);
+        }
+    }
+
+    public void headNoti1() {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this,
+                "id")
+                .setContentTitle("Bạn đã được admin xác nhận nạp tiền!")
+                .setContentText("Vui lòng kiểm tra số dư!")
+                .setSmallIcon(R.drawable.ic_avatar_app)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setAutoCancel(true);
+
+        NotificationManagerCompat managerCompat = NotificationManagerCompat.from(this);
+        managerCompat.notify(1001, builder.build());
+    }
+
+    public void headNoti2() {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this,
+                CHANNEL_ID)
+                .setContentTitle("Bạn có thông báo mới về trạng thái vé của bạn!")
+                .setContentText("Vui lòng kiểm tra!")
+                .setSmallIcon(R.drawable.ic_avatar_app)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setAutoCancel(true);
+
+        NotificationManagerCompat managerCompat = NotificationManagerCompat.from(this);
+        managerCompat.notify(1002, builder.build());
     }
 
 }

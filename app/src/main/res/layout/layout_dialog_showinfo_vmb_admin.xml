@@ -17,9 +17,9 @@
 
             <ImageView
                 android:id="@+id/logo_mb_info_admin"
-                android:layout_width="100dp"
+                android:layout_width="90dp"
                 android:layout_height="80dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="10dp"
                 android:src="@drawable/logo_vnairlines" />
 
             <LinearLayout
@@ -51,7 +51,7 @@
                         android:layout_height="wrap_content"
                         android:text="Thời gian đặt vé: "
                         android:textColor="@color/black"
-                        android:textSize="12dp" />
+                        android:textSize="10dp" />
 
                     <TextView
                         android:id="@+id/tv_timedatve_info_admin"
@@ -59,7 +59,7 @@
                         android:layout_height="wrap_content"
                         android:text="12/12/2022"
                         android:textColor="#4138C3"
-                        android:textSize="12dp" />
+                        android:textSize="10dp" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -91,7 +91,7 @@
                 android:id="@+id/tv_macb_info_admin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="150dp"
+                android:paddingLeft="110dp"
                 android:text="Mã chuyến bay: VNA9999"
                 android:textColor="@color/black"
                 android:textSize="12dp" />
@@ -192,7 +192,7 @@
                 android:paddingStart="5dp"
                 android:text="Giờ bay: "
                 android:textColor="@color/black"
-                android:textSize="12dp" />
+                android:textSize="11dp" />
 
             <TextView
                 android:id="@+id/tv_ngaybay_info_admin"
@@ -201,7 +201,7 @@
                 android:paddingStart="5dp"
                 android:text="07:00 17/11/2022"
                 android:textColor="#4C72BF"
-                android:textSize="12dp" />
+                android:textSize="11dp" />
 
             <ImageView
                 android:layout_width="20dp"
@@ -213,9 +213,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingStart="5dp"
-                android:text="Thời gian bay: "
+                android:text="Thời gian: "
                 android:textColor="@color/black"
-                android:textSize="12dp" />
+                android:textSize="11dp" />
 
             <TextView
                 android:id="@+id/tv_tongtime_info_admin"
@@ -224,7 +224,7 @@
                 android:paddingStart="5dp"
                 android:text="1h40m"
                 android:textColor="#D12057"
-                android:textSize="12dp" />
+                android:textSize="11dp" />
         </LinearLayout>
 
         <TextView
@@ -276,7 +276,8 @@
 
                     <TextView
                         android:id="@+id/tv_tenkh_info_admin"
-                        android:layout_width="wrap_content"
+                        android:layout_width="130dp"
+                        android:singleLine="true"
                         android:layout_height="wrap_content"
                         android:text="Phạm Ngọc Cảnh"
                         android:textColor="@color/black"
@@ -285,10 +286,10 @@
 
                     <TextView
                         android:id="@+id/tv_sex_user_info_admin"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="40dp"
-                        android:text="Giới tính: Nam "
+                        android:paddingLeft="10dp"
+                        android:text="GT: Nam "
                         android:textColor="@color/black"
                         android:textSize="12dp" />
                 </LinearLayout>
@@ -307,19 +308,18 @@
                         android:textColor="@color/black"
                         android:textSize="12dp" />
 
-                    <TextView
-                        android:id="@+id/tv_sdt_user_info_admin"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:gravity="right"
-                        android:text="SĐT: 0987654321"
-                        android:paddingRight="20dp"
-                        android:textColor="@color/black"
-                        android:textSize="12dp" />
+
                 </LinearLayout>
 
-
+                <TextView
+                    android:id="@+id/tv_sdt_user_info_admin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="SĐT: 0987654321"
+                    android:paddingStart="20dp"
+                    android:textColor="@color/black"
+                    android:textSize="12dp" />
                 <TextView
                     android:id="@+id/tv_diachi_user_info_admin"
                     android:layout_width="wrap_content"
@@ -392,19 +392,20 @@
 
                     <TextView
                         android:id="@+id/tv_tennv_info_admin"
-                        android:layout_width="wrap_content"
+                        android:layout_width="130dp"
+                        android:singleLine="true"
                         android:layout_height="wrap_content"
-                        android:text="Phạm Ngọc Cảnh"
+                        android:text="Trần Kim Ngân"
                         android:textColor="@color/black"
                         android:textSize="14dp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tv_sex_staff_info_admin"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="40dp"
-                        android:text="Giới tính: Nam "
+                        android:paddingLeft="10dp"
+                        android:text="GT: Nam "
                         android:textColor="@color/black"
                         android:textSize="12dp" />
                 </LinearLayout>

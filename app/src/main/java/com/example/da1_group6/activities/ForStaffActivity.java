@@ -1,9 +1,12 @@
 package com.example.da1_group6.activities;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
@@ -18,6 +21,8 @@ import com.google.android.material.navigation.NavigationView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
@@ -41,6 +46,10 @@ public class ForStaffActivity extends AppCompatActivity {
     DAO_QLNV dao;
     NhanVien nv;
     ArrayList<NhanVien> list;
+
+    public static final String CHANNEL_ID = "channel_id";
+    public static final String CHANNEL_NAME = "channel_name";
+    public static final String CHANNEL_DESC = "channel_desc";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,6 +156,18 @@ public class ForStaffActivity extends AppCompatActivity {
                 reloadData();
             }
         });
+
+        SharedPreferences preferences1 = getSharedPreferences("NOTI_STAFF", MODE_PRIVATE);
+        String manv_noti = preferences1.getString("noti_manv", "");
+        boolean check_noti = preferences1.getBoolean("noti_check", false);
+        if(manv_noti.equalsIgnoreCase(email) && check_noti == true) {
+            notification();
+            headNoti();
+            SharedPreferences.Editor editor = preferences1.edit();
+            editor.putBoolean("noti_check", false);
+            editor.putString("noti_manv", email);
+            editor.commit();
+        }
     }
 
     @Override
@@ -174,4 +195,26 @@ public class ForStaffActivity extends AppCompatActivity {
         }
     }
 
+    public void notification() {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel notiChannel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_HIGH);
+            notiChannel.setDescription(CHANNEL_DESC);
+
+            NotificationManager managerCompat = getSystemService(NotificationManager.class);
+            managerCompat.createNotificationChannel(notiChannel);
+        }
+    }
+
+    public void headNoti() {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this,
+                CHANNEL_ID)
+                .setContentTitle("Notification")
+                .setContentText("Bạn có yêu cầu xác nhận vé máy bay mới!")
+                .setSmallIcon(R.drawable.ic_avatar_app)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setAutoCancel(true);
+
+        NotificationManagerCompat managerCompat = NotificationManagerCompat.from(this);
+        managerCompat.notify(1002, builder.build());
+    }
 }
