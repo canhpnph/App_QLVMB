@@ -43,10 +43,11 @@
             </LinearLayout>
 
             <ImageView
+                android:id="@+id/ic_daonguoc"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="20dp"
-                android:src="@drawable/ic_baseline_arrow_right_alt_24" />
+                android:src="@drawable/ic_swap" />
 
             <LinearLayout
                 android:layout_width="150dp"

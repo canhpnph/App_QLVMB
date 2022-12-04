@@ -35,7 +35,7 @@ import java.util.HashMap;
 public class Fragment_BookVe_user extends Fragment {
     Spinner spin_from, spin_to, spin_hangmb;
     ImageView btn_search_chuyenbay;
-    ImageView choose_day;
+    ImageView choose_day, ic_daonguoc;
     TextView tv_date, tv_no_result;
     RecyclerView recyclerView;
     DAO_ChuyenBay dao;
@@ -61,12 +61,24 @@ public class Fragment_BookVe_user extends Fragment {
         tv_date = view.findViewById(R.id.tv_date_bookve_user);
         recyclerView = view.findViewById(R.id.recycleriew_chuyenbay_in_bookve);
         tv_no_result = view.findViewById(R.id.tv_no_result);
+        ic_daonguoc = view.findViewById(R.id.ic_daonguoc);
 
 
         String[] list = {"Hà Nội", "Hải Phòng", "Đà Nẵng", "Nha Trang", "TP. HCM", "Phú Quốc"};
         adapter_from = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, list);
+
         spin_from.setAdapter(adapter_from);
         spin_to.setAdapter(adapter_from);
+
+        ic_daonguoc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int index_spinfrom = spin_from.getSelectedItemPosition();
+                int index_spinto = spin_to.getSelectedItemPosition();
+                spin_from.setSelection(index_spinto);
+                spin_to.setSelection(index_spinfrom);
+            }
+        });
 
         getDataHangMB(spin_hangmb);
 
