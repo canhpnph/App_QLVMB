@@ -1,5 +1,7 @@
 package com.example.da1_group6.model;
 
+import android.graphics.Bitmap;
+
 public class HoaDonNapTien {
     int id;
     int makh;
@@ -7,22 +9,25 @@ public class HoaDonNapTien {
     int sotiennap;
     String timenap;
     int trangthai;
+    Bitmap bill;
 
-    public HoaDonNapTien(int id, int makh, String hotenkh, int sotiennap, String timenap, int trangthai) {
+    public HoaDonNapTien(int id, int makh, String hotenkh, int sotiennap, String timenap, int trangthai, Bitmap bill) {
         this.id = id;
         this.makh = makh;
         this.hotenkh = hotenkh;
         this.sotiennap = sotiennap;
         this.timenap = timenap;
         this.trangthai = trangthai;
+        this.bill = bill;
     }
 
-    public HoaDonNapTien(int id, int makh, int sotiennap, String timenap, int trangthai) {
+    public HoaDonNapTien(int id, int makh, int sotiennap, String timenap, int trangthai, Bitmap bill) {
         this.id = id;
         this.makh = makh;
         this.sotiennap = sotiennap;
         this.timenap = timenap;
         this.trangthai = trangthai;
+        this.bill = bill;
     }
 
     public HoaDonNapTien() {
@@ -74,5 +79,13 @@ public class HoaDonNapTien {
 
     public void setTrangthai(int trangthai) {
         this.trangthai = trangthai;
+    }
+
+    public Bitmap getBill() {
+        return bill;
+    }
+
+    public void setBill(Bitmap bill) {
+        this.bill = bill;
     }
 }

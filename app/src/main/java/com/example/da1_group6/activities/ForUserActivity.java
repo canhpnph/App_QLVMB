@@ -19,6 +19,7 @@ import com.example.da1_group6.R;
 import com.example.da1_group6.dao.DAO_KhachHang;
 import com.example.da1_group6.databinding.ActivityForUserBinding;
 import com.example.da1_group6.model.KhachHang;
+import com.example.da1_group6.ui_user.Fragment_Wallet_user;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;

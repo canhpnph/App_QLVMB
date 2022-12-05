@@ -21,7 +21,7 @@ public class SQLite extends SQLiteOpenHelper {
         String tb_vmb = "create table VEMAYBAY (mavmb integer primary key autoincrement, macb text, manv text, makh text, timedatve text, trangthai integer, foreign key (macb) references CHUYENBAY(macb)," +
                 "foreign key (manv) references NHANVIEN(manv), foreign key (makh) references KHACHHANG(makh))";
         String tb_admin = "create table ADMIN (user text primary key, pass text)";
-        String tb_hoadon = "create table HOADONNAPTIEN (id integer primary key autoincrement, makh text, sotiennap integer, timenap text, trangthai int, foreign key (makh) references KHACHHANG(makh))";
+        String tb_hoadon = "create table HOADONNAPTIEN (id integer primary key autoincrement, makh text, sotiennap integer, timenap text, trangthai int, bill blob, foreign key (makh) references KHACHHANG(makh))";
         String tb_lsgd = "create table LSGD (id integer primary key autoincrement, makh integer, title text, sotien integer, time text, foreign key (makh) references KHACHHANG(makh))";
 
         db.execSQL(tb_hmb);

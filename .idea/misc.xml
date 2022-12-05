@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/drawable-v24/border_picture.xml" value="0.1" />
+        <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/drawable-v24/custom_bgr_border.xml" value="0.1" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/drawable-v24/custom_item_onclick_menu.xml" value="0.16" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/drawable-v24/custom_searchview.xml" value="0.16" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
@@ -18,6 +20,7 @@
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/drawable/custom_icon_dangnhap.xml" value="0.1645" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/drawable/custom_icon_pass.xml" value="0.1645" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/drawable/custom_icon_retype_passw.xml" value="0.148" />
+        <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/drawable/custom_info_banking.xml" value="0.1" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/drawable/custom_spinner.xml" value="0.142" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/drawable/custom_spinner1.xml" value="0.1" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/drawable/customspinner.xml" value="0.1565" />
@@ -50,8 +53,10 @@
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/activity_for_staff.xml" value="0.24635416666666668" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/activity_for_user.xml" value="0.25" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/activity_login.xml" value="0.264" />
+        <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/activity_naptien.xml" value="0.25" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/activity_onboard.xml" value="0.152" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/activity_register.xml" value="0.25" />
+        <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/activity_up_bill.xml" value="0.2359375" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/app_bar_for_admin.xml" value="0.24635416666666668" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/app_bar_for_staff.xml" value="0.24635416666666668" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/app_bar_for_user.xml" value="0.25" />
@@ -92,6 +97,8 @@
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/fragment_wallet_user.xml" value="0.2" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/fragment_xnvmb.xml" value="0.1" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/fragment_xnvmb_staff.xml" value="0.25" />
+        <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/layout_bill_naptien.xml" value="0.25" />
+        <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/layout_billck_admin.xml" value="0.25" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/layout_dialog_hetve.xml" value="0.25" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/layout_dialog_notice_hettien.xml" value="0.25" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/layout_dialog_notice_info.xml" value="0.25" />
@@ -114,7 +121,7 @@
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/layout_item1_vmb_dxn_user.xml" value="0.25" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/layout_item1_vmb_user.xml" value="0.24635416666666668" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/layout_item1_xnvmb_staff.xml" value="0.24895833333333334" />
-        <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/layout_naptien.xml" value="0.2" />
+        <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/layout_naptien.xml" value="0.264" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/layout_select_image_from_camera.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/nav_header_for_admin.xml" value="0.19591836734693877" />
         <entry key="..\:/Users/tienm/DA1_group6/app/src/main/res/layout/nav_header_for_staff.xml" value="0.19591836734693877" />

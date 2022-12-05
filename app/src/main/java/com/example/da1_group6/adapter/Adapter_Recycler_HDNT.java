@@ -1,11 +1,13 @@
 package com.example.da1_group6.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,7 +64,7 @@ public class Adapter_Recycler_HDNT extends RecyclerView.Adapter<Adapter_Recycler
             @Override
             public void onClick(View v) {
                 dao = new DAO_HoaDonNapTien(v.getContext());
-                dao.updHD(new HoaDonNapTien(hd.getId(), hd.getMakh(), hd.getSotiennap(), hd.getTimenap(), 1));
+                dao.updHD(new HoaDonNapTien(hd.getId(), hd.getMakh(), hd.getSotiennap(), hd.getTimenap(), 1, hd.getBill()));
                 reload();
                 Toast.makeText(context, "Xác nhận nạp tiền thành công!", Toast.LENGTH_SHORT).show();
                 DAO_KhachHang dao_khachHang = new DAO_KhachHang(context);
@@ -98,6 +100,23 @@ public class Adapter_Recycler_HDNT extends RecyclerView.Adapter<Adapter_Recycler
                 }
             });
         }
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LayoutInflater inflater = LayoutInflater.from(context);
+                View view = inflater.inflate(R.layout.layout_billck_admin, null);
+
+                ImageView imageView = view.findViewById(R.id.img_show_bill_of_user);
+                imageView.setImageBitmap(hd.getBill());
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setView(view);
+
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+            }
+        });
     }
 
     @Override
