@@ -117,16 +117,6 @@ public class DAO_ChuyenBay {
         return true;
     }
 
-    public int getGiave(String macb) {
-        int giave = 0;
-        dtb = sql.getReadableDatabase();
-        Cursor cursor = dtb.rawQuery("select giave from CHUYENBAY where macb = ?", new String[] {String.valueOf(macb)});
-        if(cursor.moveToFirst()) {
-            giave = cursor.getInt(0);
-        }
-        return giave;
-    }
-
     public int getSLve(String macb) {
         int sl = 0;
         dtb = sql.getReadableDatabase();
@@ -135,5 +125,43 @@ public class DAO_ChuyenBay {
             sl = cursor.getInt(0);
         }
         return sl;
+    }
+
+    public boolean addCB(ChuyenBay cb) {
+        dtb = sql.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("macb", cb.getMacb());
+        values.put("diemdi", cb.getDiemdi());
+        values.put("diemden", cb.getDiemden());
+        values.put("giave", cb.getGiave());
+        values.put("timebay", cb.getTimebay());
+        values.put("tongtime", cb.getTongtime());
+        values.put("soluongve", cb.getSoluongve());
+        values.put("mamb", cb.getMamb());
+        if(dtb.insert("CHUYENBAY", null, values) <0) {
+            return false;
+        } return true;
+    }
+
+    public boolean updCB(ChuyenBay cb) {
+        dtb = sql.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("diemdi", cb.getDiemdi());
+        values.put("diemden", cb.getDiemden());
+        values.put("giave", cb.getGiave());
+        values.put("timebay", cb.getTimebay());
+        values.put("tongtime", cb.getTongtime());
+        values.put("soluongve", cb.getSoluongve());
+        values.put("mamb", cb.getMamb());
+        if(dtb.update("CHUYENBAY", values, "macb = ?", new String[] {cb.getMacb()}) <0) {
+            return false;
+        } return true;
+    }
+
+    public boolean delCB(String macb) {
+        dtb = sql.getWritableDatabase();
+        if(dtb.delete("CHUYENBAY", "macb = ?", new String[] {macb}) <0) {
+            return false;
+        } return true;
     }
 }
