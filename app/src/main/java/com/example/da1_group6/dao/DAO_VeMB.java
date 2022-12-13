@@ -200,7 +200,7 @@ public class DAO_VeMB {
         int sum = 0;
         dtb = sql.getReadableDatabase();
         Cursor cursor = dtb.rawQuery("select count(*) from VEMAYBAY vmb, CHUYENBAY cb, NHANVIEN nv where vmb.macb = cb.macb and vmb.manv = nv.manv " +
-                "and timedatve >= '" + ngaybd + "' and timedatve <= '" + ngaykt + "' and trnagthai = ?", new String[] {String.valueOf(status)});
+                "and timedatve >= '" + ngaybd + "' and timedatve <= '" + ngaykt + "' and trangthai = ?", new String[] {String.valueOf(status)});
         if(cursor.moveToFirst()) {
             sum = cursor.getInt(0);
         }
