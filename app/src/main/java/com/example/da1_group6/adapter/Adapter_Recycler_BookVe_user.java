@@ -44,6 +44,7 @@ public class Adapter_Recycler_BookVe_user extends RecyclerView.Adapter<Adapter_R
     int giave = 0;
     String mamb, macb, manv;
     int makh;
+    ArrayList<KhachHang> list_kh;
 
     @NonNull
     @Override
@@ -130,8 +131,8 @@ public class Adapter_Recycler_BookVe_user extends RecyclerView.Adapter<Adapter_R
         SharedPreferences preferences = context.getSharedPreferences("TB", Context.MODE_PRIVATE);
         String email = preferences.getString("User", "");
         DAO_KhachHang dao_user = new DAO_KhachHang(context);
-        ArrayList<KhachHang> list = dao_user.getUser(email);
-        KhachHang kh = list.get(0);
+        list_kh = dao_user.getUser(email);
+        KhachHang kh = list_kh.get(0);
 
         holder.btn_bookve.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -209,7 +210,9 @@ public class Adapter_Recycler_BookVe_user extends RecyclerView.Adapter<Adapter_R
                         } else {
                             DAO_VeMB dao_vmb = new DAO_VeMB(context);
                             VeMB vmb = new VeMB();
-
+                            list_kh = new ArrayList<>();
+                            list_kh = dao_user.getUser(email);
+                            KhachHang kh = list_kh.get(0);
                             int sodu = kh.getSodu();
                             if (sodu < giave) {
                                 Runnable runnable = new Runnable() {
