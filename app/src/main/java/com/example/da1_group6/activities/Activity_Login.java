@@ -27,7 +27,8 @@ public class Activity_Login extends AppCompatActivity {
     Button btnLogin;
     ImageView showPass;
     CheckBox ckbox;
-    List<Object> list = new ArrayList<>();
+    List<Object> listT = new ArrayList<>();
+    List<Object> listF = new ArrayList<>();
     DAO_admin dao_admin;
     DAO_QLNV dao_nv;
     DAO_KhachHang dao_kh;
@@ -51,17 +52,20 @@ public class Activity_Login extends AppCompatActivity {
 
         edt_pass.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
-        Intent intent = getIntent();
-        String email = intent.getStringExtra("email");
-        String pass = intent.getStringExtra("pass");
-        edt_pass.setText(pass);
-        edt_email.setText(email);
+        listT = readAccTrue();
 
-        list = readAcc();
-        if (list.size() > 0) {
-            edt_email.setText(list.get(0).toString());
-            edt_pass.setText(list.get(1).toString());
-            ckbox.setChecked((boolean) list.get(2));
+        if((boolean)(listT.get(2)) == false) {
+            if (listT.size() > 0) {
+                edt_email.setText("");
+                edt_pass.setText("");
+                ckbox.setChecked((boolean) listT.get(2));
+            }
+        } else {
+            if (listT.size() > 0) {
+                edt_email.setText(listT.get(0).toString());
+                edt_pass.setText(listT.get(1).toString());
+                ckbox.setChecked((boolean) listT.get(2));
+            }
         }
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -69,6 +73,7 @@ public class Activity_Login extends AppCompatActivity {
             public void onClick(View v) {
                 String user = edt_email.getText().toString();
                 String pass = edt_pass.getText().toString();
+
                 boolean check = ckbox.isChecked();
                 saveAcc(user, pass, check);
 
@@ -128,7 +133,9 @@ public class Activity_Login extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("TB", MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         if (check == false) {
-            editor.clear();
+            editor.putString("User", user);
+            editor.putString("Pass", pass);
+            editor.putBoolean("Check", check);
         } else {
             editor.putString("User", user);
             editor.putString("Pass", pass);
@@ -137,11 +144,12 @@ public class Activity_Login extends AppCompatActivity {
         editor.commit();
     }
 
-    List<Object> readAcc() {
+    List<Object> readAccTrue() {
         SharedPreferences s = getSharedPreferences("TB", MODE_PRIVATE);
-        list.add(s.getString("User", ""));
-        list.add(s.getString("Pass", ""));
-        list.add(s.getBoolean("Check", false));
-        return list;
+        listT.add(s.getString("User", ""));
+        listT.add(s.getString("Pass", ""));
+        listT.add(s.getBoolean("Check", false));
+        return listT;
     }
+
 }
